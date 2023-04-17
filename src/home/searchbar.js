@@ -2,21 +2,13 @@ import React, {useEffect, useState} from 'react'
 import Select, {components} from 'react-select';
 import {useDispatch, useSelector} from "react-redux";
 import {searchSpotifyThunk} from "../thunks/spotify-thunks";
-import { Link } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpotify } from "@fortawesome/free-brands-svg-icons"
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {findUsersThunk} from "../thunks/user-thunks";
-import * as JsSearch from 'js-search';
 
 library.add(faSpotify)
-
-const search = new JsSearch.Search('username');
-search.addIndex('email')
-
-const userSearch = (query, users) => {
-    return users.filter(user => user.username.indexOf(query) !== 1)
-}
 
 const SearchBar = () => {
 
@@ -26,6 +18,10 @@ const SearchBar = () => {
     const {tracks} = useSelector(state => state.spotifyData)
     const {users, loading} = useSelector(state => state.userData)
 
+    const userSearch = () => {
+        return searchInput ? users.filter(user => user.username.indexOf(searchInput) !== -1) : []
+    }
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -33,17 +29,17 @@ const SearchBar = () => {
     }, [])
     useEffect(() => {
         dispatch(searchSpotifyThunk({query: searchInput, count: 10}))
-        const matchedUsers = userSearch(searchInput, users)
-        console.log('searchin g')
-        setSearchedUsers(matchedUsers)
-        console.log(matchedUsers)
+        setSearchedUsers(userSearch())
     }, [searchInput, users])
 
     const handleChange = (e) => {
         setSearchInput(() => {
             if (e !== null) return e;
-            else throw new Error('Async song select choice was null');
         })
+    };
+    const handleSelection = (e) => {
+        e.value.indexOf('user') !== -1 ?
+        redirect('/users/') : redirect('/tracks/')
     };
 
     const NoOptionsMessage = props => {
@@ -66,25 +62,35 @@ const SearchBar = () => {
         );
     };
 
+    const displayedUsers = searchedUsers ?
+        searchedUsers.slice(0,3).map(user => {
+        return ({
+            label: <Link to={`/users/${user._id}`} style={{ color: 'black', textDecoration: 'none'}}>
+                <div>user: <span color={'blue'}>{user.username}</span> <span>{user.username}</span></div>
+            </Link>,
+            value: `user:${user.username}`
+        })
+    }) : []
+    const displayedTracks = tracks ? tracks.map(track => {
+        const image = track.album.images[0]
+        const image_label = <img src={image.url} alt={''} height="36px" width="36px"></img>
+        const song_label = `${track.name} - ${track.artists.map(artist => artist.name).join(', ')}`
+        return ({
+            label: <Link to={`/tracks/${track.id}`} style={{ color: 'black', textDecoration: 'none'}}>
+                <div>{image_label} {song_label}</div>
+            </Link>,
+            value: `track:${track.name}`
+        })
+    }) : []
     return <div>
-        <div>{searchedUsers.map(u => <p>u.username</p>)}</div>
         <div>
         <Select
-            options={tracks ? tracks.map(track => {
-                const image = track.album.images[0]
-                const image_label = <img src={image.url} height="36px" width="36px"></img>
-                const song_label = `${track.name} - ${track.artists.map(artist => artist.name).join(', ')}`
-                return ({
-                    label: <Link to={`/tracks/${track.id}`} style={{ color: 'black', textDecoration: 'none'}}><div>{image_label} {song_label}</div></Link>,
-                    value: track.name
-                })
-                }) : []
+            options={displayedUsers.concat(displayedTracks)
             }
             components={{ NoOptionsMessage, DropdownIndicator: SpotifyDropdown }}
             onInputChange={handleChange}
-            onChange={opt => console.log(opt.label, opt.value)}
-            placeholder="Search for users or songs"
-        >
+            onChange={handleSelection}
+            placeholder="Search for users or songs">
         </Select>
     </div>
     </div>

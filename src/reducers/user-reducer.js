@@ -14,21 +14,16 @@ const userSlice = createSlice({
     extraReducers: {
         [findUsersThunk.pending]:
             (state) => {
-            console.log('peniding')
                 state.loading = true
                 state.users = []
             },
         [findUsersThunk.fulfilled]:
             (state, { payload }) => {
                 state.loading = false
-                console.log('done')
-                console.log(payload)
                 state.users = payload
             },
         [findUsersThunk.rejected]:
             (state, action) => {
-                console.log(action.error)
-                console.log('error')
                 state.loading = false
                 state.error = action.error
             },

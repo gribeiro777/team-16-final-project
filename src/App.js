@@ -2,8 +2,8 @@ import {BrowserRouter} from "react-router-dom";
 import {Routes, Route} from "react-router";
 import Home from "./home";
 import Track from "./track"
-import LoginPage from "./login";
-import RegisterPage from "./register";
+import Register from "./register";
+import Login from "./login";
 
 function App() {
   return (
@@ -15,9 +15,9 @@ function App() {
             <Route path='/tracks/:tid'
                    element={<Track/>}/>
             <Route path='login'
-                   element={<LoginPage/>}/>
+                   element={<Login/>}/>
             <Route path='register'
-                   element={<RegisterPage/>}/>
+                   element={<Register/>}/>
           </Routes>
 
         {/* </div> */}

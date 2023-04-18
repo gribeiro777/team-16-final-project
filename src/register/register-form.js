@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
+import { createUserThunk } from "../thunks/user-thunks";
 
 const RegisterForm = () => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+
+    const dispatch = useDispatch();
 
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
@@ -27,7 +30,14 @@ const RegisterForm = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // handle form submission
+        const newUser = {
+            username: username,
+            password: password,
+            email: email,
+            isAdmin: false,
+        }
+        console.log(newUser);
+        dispatch(createUserThunk(newUser))
     };
 
   return (
@@ -43,6 +53,7 @@ const RegisterForm = () => {
               id="username"
               value={username}
               onChange={handleUsernameChange}
+              required
             />
           </div>
 
@@ -54,6 +65,7 @@ const RegisterForm = () => {
               id="email"
               value={email}
               onChange={handleEmailChange}
+              required
             />
           </div>
 
@@ -65,6 +77,7 @@ const RegisterForm = () => {
               id="password"
               value={password}
               onChange={handlePasswordChange}
+              required
             />
           </div>
 
@@ -76,17 +89,18 @@ const RegisterForm = () => {
               id="confirmPassword"
               value={confirmPassword}
               onChange={handleConfirmPasswordChange}
+              required
             />
           </div>
 
-          <div class='text-center'>
+          <div className='text-center'>
             <button type="submit" className="btn btn-primary w-20">
                 Register
             </button>
           </div>
         </form>
 
-        <div class='text-center'>
+        <div className='text-center'>
             <p className="mt-3">
             Already have an account? <Link to="/login">Log in</Link>
             </p>

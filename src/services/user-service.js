@@ -7,3 +7,10 @@ export const findUsers = async () => {
 
     return users
 }
+
+export const createUser = async (newUser) => {
+    const response = await axios.post(`${DB_URL}/create-user`, newUser);
+    const user = response.data;
+
+    return user
+}

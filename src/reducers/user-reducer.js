@@ -30,6 +30,7 @@ const userSlice = createSlice({
         [createUserThunk.pending]:
             (state) => {
                 state.loading = true
+                state.error = undefined
             },
         [createUserThunk.fulfilled]:
             (state, { payload }) => {

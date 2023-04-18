@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import { createUserThunk } from "../thunks/user-thunks";
@@ -9,8 +9,15 @@ const RegisterForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const {loading, error} = useSelector(state => state.userData)
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (error) {
+            alert('Username or email already exists. Please try again.');
+        }
+    }, [error])
 
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
@@ -29,15 +36,19 @@ const RegisterForm = () => {
     };
 
     const handleSubmit = (event) => {
-        event.preventDefault();
-        const newUser = {
-            username: username,
-            password: password,
-            email: email,
-            isAdmin: false,
+        if (password !== confirmPassword) {
+            alert('Passwords do not match. Please try again.');
+        } else {
+            event.preventDefault();
+            const newUser = {
+                username: username,
+                password: password,
+                email: email,
+                isAdmin: false,
+            }
+            console.log(newUser);
+            dispatch(createUserThunk(newUser))
         }
-        console.log(newUser);
-        dispatch(createUserThunk(newUser))
     };
 
   return (
@@ -94,9 +105,10 @@ const RegisterForm = () => {
           </div>
 
           <div className='text-center'>
-            <button type="submit" className="btn btn-primary w-20">
+            {!loading && <button type="submit" className="btn btn-primary w-20">
                 Register
-            </button>
+            </button>}
+            {loading && <p>Registering...</p>}
           </div>
         </form>
 

@@ -1,23 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Navigate, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
-import { createUserThunk } from "../thunks/user-thunks";
+import { registerThunk } from "../thunks/auth-thunks";
 
 const RegisterForm = () => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const {loading, error} = useSelector(state => state.userData)
+    const {loading, error, registered} = useSelector(state => state.authData)
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (error) {
             alert('Username or email already exists. Please try again.');
         }
-    }, [error])
+        if (registered) {
+            navigate('/');
+        }
+    }, [error, registered, navigate])
 
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
@@ -45,9 +50,13 @@ const RegisterForm = () => {
                 password: password,
                 email: email,
                 isAdmin: false,
+                followers: [],
+                following: [],
+                likedPosts: [],
+                posts: [],
             }
             console.log(newUser);
-            dispatch(createUserThunk(newUser))
+            dispatch(registerThunk(newUser))
         }
     };
 

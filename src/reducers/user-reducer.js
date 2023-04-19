@@ -27,20 +27,6 @@ const userSlice = createSlice({
                 state.loading = false
                 state.error = action.error
             },
-        [createUserThunk.pending]:
-            (state) => {
-                state.loading = true
-                state.error = undefined
-            },
-        [createUserThunk.fulfilled]:
-            (state, { payload }) => {
-                state.loading = false
-            },
-        [createUserThunk.rejected]:
-            (state, action) => {
-                state.loading = false
-                state.error = action.error
-            },
     },
     reducers: {}
 });

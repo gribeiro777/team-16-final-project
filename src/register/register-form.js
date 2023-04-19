@@ -15,15 +15,6 @@ const RegisterForm = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (error) {
-            alert('Username or email already exists. Please try again.');
-        }
-        if (registered) {
-            navigate('/');
-        }
-    }, [error, registered, navigate])
-
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
     };
@@ -40,7 +31,7 @@ const RegisterForm = () => {
         setConfirmPassword(event.target.value);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         if (password !== confirmPassword) {
             alert('Passwords do not match. Please try again.');
         } else {
@@ -55,8 +46,12 @@ const RegisterForm = () => {
                 likedPosts: [],
                 posts: [],
             }
-            console.log(newUser);
-            dispatch(registerThunk(newUser))
+            try {
+                await dispatch(registerThunk(newUser)).unwrap()
+                navigate('/');
+            } catch (error) {
+                alert('Username or email already exists. Please try again.');
+            }
         }
     };
 

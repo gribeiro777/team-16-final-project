@@ -12,15 +12,6 @@ const LoginForm = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (error) {
-            alert('Username or password is incorrect. Please try again.');
-        }
-        if (loggedIn) {
-            navigate('/');
-        }
-    }, [error, loggedIn, navigate])
-
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
     };
@@ -29,10 +20,15 @@ const LoginForm = () => {
         setPassword(event.target.value);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const credentials = {username: username, password: password}
-        dispatch(loginThunk(credentials));
+        try {
+            await dispatch(loginThunk(credentials)).unwrap();
+            navigate('/');
+        } catch (error) {
+            alert('Incorrect username or password. Please try again.');
+        }
     };
 
   return (

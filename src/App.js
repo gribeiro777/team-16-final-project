@@ -4,6 +4,7 @@ import Home from "./home";
 import Track from "./track"
 import Register from "./register";
 import Login from "./login";
+import Profile from "./profile";
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
                    element={<Login/>}/>
             <Route path='register'
                    element={<Register/>}/>
+            <Route path='profile'
+                   element={<Profile/>}/>
           </Routes>
 
         {/* </div> */}

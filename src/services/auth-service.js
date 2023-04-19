@@ -15,3 +15,10 @@ export const login = async (credentials) => {
 
     return user
 }
+
+export const getCurrentUser = async () => {
+    const response = await axios.get(`${DB_URL}/get-current-user`);
+    const user = response.data;
+
+    return user
+}

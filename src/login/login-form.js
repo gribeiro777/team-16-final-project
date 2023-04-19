@@ -25,7 +25,7 @@ const LoginForm = () => {
         const credentials = {username: username, password: password}
         try {
             await dispatch(loginThunk(credentials)).unwrap();
-            navigate('/');
+            navigate('/profile');
         } catch (error) {
             alert('Incorrect username or password. Please try again.');
         }

@@ -12,3 +12,8 @@ export const loginThunk = createAsyncThunk(
     'users/login', async (credentials) =>
         await service.login(credentials)
 )
+
+export const getCurrentUserThunk = createAsyncThunk(
+    'users/currentUser', async () =>
+        await service.getCurrentUser()
+)

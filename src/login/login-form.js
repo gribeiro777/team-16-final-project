@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import { useDispatch, useSelector } from "react-redux";
@@ -7,7 +7,7 @@ import { loginThunk } from "../thunks/auth-thunks";
 const LoginForm = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const {loading, error, loggedIn} = useSelector(state => state.authData);
+    const {loading} = useSelector(state => state.authData);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import { registerThunk } from "../thunks/auth-thunks";
@@ -10,7 +10,7 @@ const RegisterForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const {loading, error, registered} = useSelector(state => state.authData)
+    const {loading} = useSelector(state => state.authData)
 
     const dispatch = useDispatch();
     const navigate = useNavigate();

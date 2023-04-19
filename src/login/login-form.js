@@ -5,35 +5,35 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginThunk } from "../thunks/auth-thunks";
 
 const LoginForm = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const {loading, error, loggedIn} = useSelector(state => state.authData);
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const {loading, error, loggedIn} = useSelector(state => state.authData);
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-  useEffect(() => {
-    if (error) {
-        alert('Username or password is incorrect. Please try again.');
-    }
-    if (loggedIn) {
-        navigate('/');
-    }
-}, [error, loggedIn, navigate])
+    useEffect(() => {
+        if (error) {
+            alert('Username or password is incorrect. Please try again.');
+        }
+        if (loggedIn) {
+            navigate('/');
+        }
+    }, [error, loggedIn, navigate])
 
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
-  };
+    const handleUsernameChange = (event) => {
+        setUsername(event.target.value);
+    };
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+    };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const credentials = {username: username, password: password}
-    dispatch(loginThunk(credentials));
-  };
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const credentials = {username: username, password: password}
+        dispatch(loginThunk(credentials));
+    };
 
   return (
     <div className="registers-page d-flex justify-content-center align-items-center vh-100 bg-light">

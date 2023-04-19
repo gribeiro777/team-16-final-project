@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { registerThunk } from "../thunks/auth-thunks";
+import { registerThunk, loginThunk } from "../thunks/auth-thunks";
 
 const authSlice = createSlice({
     name: 'auth',
@@ -19,6 +19,23 @@ const authSlice = createSlice({
         [registerThunk.rejected]:
             (state, action) => {
                 state.registered = false
+                state.loading = false
+                state.error = action.error
+            },
+        [loginThunk.pending]:
+            (state) => {
+                state.loggedIn = false
+                state.loading = true
+                state.error = undefined
+            },
+        [loginThunk.fulfilled]:
+            (state, { payload }) => {
+                state.loggedIn = true
+                state.loading = false
+            },
+        [loginThunk.rejected]:
+            (state, action) => {
+                state.loggedIn = false
                 state.loading = false
                 state.error = action.error
             },

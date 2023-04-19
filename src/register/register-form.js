@@ -117,7 +117,9 @@ const RegisterForm = () => {
             {!loading && <button type="submit" className="btn btn-primary w-20">
                 Register
             </button>}
-            {loading && <p>Registering...</p>}
+            {loading && <button type="submit" className="btn btn-primary w-20" disabled>
+                Registering...    
+            </button>}
           </div>
         </form>
 

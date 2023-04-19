@@ -1,10 +1,25 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
+import { useDispatch, useSelector } from "react-redux";
+import { loginThunk } from "../thunks/auth-thunks";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const {loading, error, loggedIn} = useSelector(state => state.authData);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (error) {
+        alert('Username or password is incorrect. Please try again.');
+    }
+    if (loggedIn) {
+        navigate('/');
+    }
+}, [error, loggedIn, navigate])
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -16,7 +31,8 @@ const LoginForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // handle form submission
+    const credentials = {username: username, password: password}
+    dispatch(loginThunk(credentials));
   };
 
   return (
@@ -47,9 +63,12 @@ const LoginForm = () => {
           </div>
 
           <div class='text-center'>
-            <button type="submit" className="btn btn-primary w-20">
+            {!loading && <button type="submit" className="btn btn-primary w-20">
                 Login
-            </button>
+            </button>}
+            {loading && <button type="submit" className="btn btn-primary w-20" disabled>
+                Logging in...
+            </button>}
           </div>
         </form>
 

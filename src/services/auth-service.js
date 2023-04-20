@@ -33,3 +33,10 @@ export const logout = async () => {
 
     return user
 }
+
+export const updateUser = async (updates) => {
+    const response = await api.put(`${DB_URL}/update-user/${updates.username}`, updates.updates);
+    const updatedUser = response.data;
+
+    return updatedUser
+}

@@ -13,6 +13,7 @@ import {configureStore} from "@reduxjs/toolkit";
 import spotifyReducer from "./reducers/spotify-reducer";
 import userReducer from "./reducers/user-reducer";
 import authReducer from "./reducers/auth-reducer";
+import EditProfile from './profile/edit-profile';
 
 function App() {
   const store = configureStore({reducer: {spotifyData: spotifyReducer, userData: userReducer, authData: authReducer}})
@@ -33,6 +34,8 @@ function App() {
                    element={<Register/>}/>
             <Route path='profile'
                    element={<Profile/>}/>
+            <Route path='edit-profile'
+                   element={<EditProfile/>}/>
           </Routes>
        </Provider>    
       </BrowserRouter>

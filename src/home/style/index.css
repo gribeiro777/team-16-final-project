@@ -1,0 +1,22 @@
+body {
+    background-color: #455d7a;
+}
+
+.secondary-color {
+    padding-top: 35px;
+    background: #455d7a;
+}
+
+.main-color {
+    background: #233142;
+}
+
+.search-bar {
+    margin-top: 0px;
+}
+
+.main-card {
+    margin-top: 16px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}

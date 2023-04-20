@@ -28,15 +28,16 @@ function Profile() {
                 <div className="row">
                     <div className='col-2 p-0'>
                         <ProfileInfo currentUser={currentUser}/>
+                        <ProfileFollows/>
                     </div>
 
-                    <div className='col-8'>
+                    <div className='col-10'>
                         <ProfilePosts></ProfilePosts>
                     </div>
 
-                    <div className='col-2'>
+                    {/* <div className='col-2'>
                         <ProfileFollows></ProfileFollows>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </Provider>

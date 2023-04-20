@@ -13,17 +13,14 @@ const postSlice = createSlice({
     extraReducers: {
         [findPostsThunk.pending]:
             (state) => {
-                console.log('pend')
                 state.posts = []
             },
         [findPostsThunk.fulfilled]:
             (state, { payload }) => {
-                console.log(payload)
                 state.posts = payload
             },
         [findPostsThunk.rejected]:
             (state, action) => {
-                console.log(action.error)
                 state.error = action.error
             },
     },

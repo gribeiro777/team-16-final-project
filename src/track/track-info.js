@@ -4,7 +4,6 @@ import {getTrackThunk} from "../thunks/spotify-thunks";
 
 const TrackInfo = (props) => {
     const {currentTrack} = useSelector(state => state.spotifyData)
-    console.log(currentTrack)
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getTrackThunk(props.tid))

@@ -1,21 +1,35 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {getTrackThunk} from "../../thunks/spotify-thunks";
+import {Link} from "react-router-dom";
 
 const PostItem = (
     {
         post = {
-            _id: {
-                "$oid": "642e1afec246b2745db4bdc6"
-            },
-            songTitle: "cowboy beebop soundtrack",
-            review: "this shit slapping FORREAL",
-            username: "some random bum",
-            artists: [],
-            image: 'abc.com',
-            time: '1:42',
-            __v: 0
+            id: 'abc',
+            songTitle: 'Hello',
+            review: 'Adele woohoo',
+            username: 'jerry jones',
+            rating: 5,
+            artists: ['Adele'],
+            genre: 'singing',
+            albumArt: 'abc.com',
+            spotifyURI: 'spotify.com/tracks/123',
+            spotifyID: 'efg',
+            likes: 10,
         }
     }
 ) => {
+
+    // const {user} = useSelector(state => state.spotifyData)
+    // const dispatch = useDispatch();
+    // useEffect(() => {
+    //     if (post.spotifyID) {
+    //         dispatch(getTrackThunk(post.spotifyID))
+    //         console.log('getting track')
+    //     }
+    // }, [])
+
     return(
         <li className="list-group-item">
             <div className="row">

@@ -6,7 +6,7 @@ import Track from "./track"
 function App() {
   return (
       <BrowserRouter>
-        <div className="container">
+        <div>
           <Routes>
             <Route index
                    element={<Home/>}/>

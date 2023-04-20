@@ -5,7 +5,7 @@ import * as service
 
 export const searchSpotifyThunk = createAsyncThunk(
         'spotify/search', async (searchInfo) =>
-            await service.searchSpotify(searchInfo.query, searchInfo.count)
+            searchInfo.query ? await service.searchSpotify(searchInfo.query, searchInfo.count) : []
 )
 
 export const getTrackThunk = createAsyncThunk(

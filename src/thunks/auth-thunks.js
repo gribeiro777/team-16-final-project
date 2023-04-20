@@ -17,3 +17,8 @@ export const getCurrentUserThunk = createAsyncThunk(
     'users/currentUser', async () =>
         await service.getCurrentUser()
 )
+
+export const logoutThunk = createAsyncThunk(
+    'users/logout', async () =>
+        await service.logout()
+)

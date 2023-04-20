@@ -84,7 +84,7 @@ const SearchBar = () => {
         searchedUsers.slice(0,3).map(user => {
         return ({
             label: <Link to={`/users/${user._id}`} style={{ color: 'black', textDecoration: 'none'}}>
-                <div>user: {user.username} {user.username}</div>
+                <div>user: <span color={'blue'}>{user.username}</span></div>
             </Link>,
             value: JSON.stringify({type: 'user', value: user})
         })

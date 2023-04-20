@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {findUsersThunk}
+import {findUsersThunk, createUserThunk}
     from "../thunks/user-thunks";
 
 

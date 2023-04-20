@@ -5,11 +5,13 @@ import Track from "./track"
 import Register from "./register";
 import Login from "./login";
 import Profile from "./profile";
+import Navigation from "./navigation";
 
 function App() {
   return (
+       <div>
       <BrowserRouter>
-        {/* <div className="container"> */}
+          <Navigation/>
           <Routes>
             <Route index
                    element={<Home/>}/>
@@ -22,9 +24,8 @@ function App() {
             <Route path='profile'
                    element={<Profile/>}/>
           </Routes>
-
-        {/* </div> */}
       </BrowserRouter>
+      </div>
   );
 }
 

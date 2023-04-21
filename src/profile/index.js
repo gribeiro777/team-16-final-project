@@ -11,7 +11,7 @@ import ProfileFollows from './profile-follows';
 
 const store = configureStore({reducer: {authData: authReducer}})
 
-function Profile() {
+function Profile({active}) {
     const { currentUser } = useSelector((state) => state.authData);
     const dispatch = useDispatch();
     
@@ -25,19 +25,15 @@ function Profile() {
     return(
         <Provider store={store}>
             <div className="container">
-                <div className="row">
+                <div className="row mt-3">
                     <div className='col-2 p-0'>
                         <ProfileInfo currentUser={currentUser}/>
                         <ProfileFollows/>
                     </div>
 
                     <div className='col-10'>
-                        <ProfilePosts></ProfilePosts>
+                        <ProfilePosts active={active}></ProfilePosts>
                     </div>
-
-                    {/* <div className='col-2'>
-                        <ProfileFollows></ProfileFollows>
-                    </div> */}
                 </div>
             </div>
         </Provider>

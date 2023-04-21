@@ -33,8 +33,8 @@ const LikedReviews = () => {
 }
 
 
-export default function ProfilePosts({active}) {
-    if (active === 'my-reviews') {
+export default function ProfilePosts({likedReviews}) {
+    if (!likedReviews) {
         return <MyReviews/>
     } else {
         return <LikedReviews/>

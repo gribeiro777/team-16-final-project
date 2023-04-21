@@ -35,9 +35,9 @@ function App() {
             <Route path='register'
                    element={<Register/>}/>
             <Route path='profile'
-                   element={<Profile active={'my-reviews'}/>}/>
+                   element={<Profile likedReviews={false}/>}/>
             <Route path='profile/liked-reviews'
-                   element={<Profile active={'liked-reviews'}/>}/>
+                   element={<Profile likedReviews={true}/>}/>
             <Route path='edit-profile'
                    element={<EditProfile/>}/>
           </Routes>

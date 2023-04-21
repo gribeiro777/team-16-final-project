@@ -11,7 +11,7 @@ import ProfileFollows from './profile-follows';
 
 const store = configureStore({reducer: {authData: authReducer}})
 
-function Profile({active}) {
+function Profile({likedReviews}) {
     const { currentUser } = useSelector((state) => state.authData);
     const dispatch = useDispatch();
     
@@ -32,7 +32,7 @@ function Profile({active}) {
                     </div>
 
                     <div className='col-10'>
-                        <ProfilePosts active={active}></ProfilePosts>
+                        <ProfilePosts likedReviews={likedReviews}></ProfilePosts>
                     </div>
                 </div>
             </div>

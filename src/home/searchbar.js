@@ -45,7 +45,7 @@ const SearchBar = () => {
         const selected = JSON.parse(e.value)
         switch (selected.type) {
             case 'user':
-                navigate(`/users/${selected.value._id}`)
+                navigate(`/profile/${selected.value._id}`)
                 break
             case 'track':
                 navigate(`/tracks/${selected.value.id}`, )
@@ -83,7 +83,7 @@ const SearchBar = () => {
     const displayedUsers = searchedUsers ?
         searchedUsers.slice(0,3).map(user => {
         return ({
-            label: <Link to={`/users/${user._id}`} style={{ color: 'black', textDecoration: 'none'}}>
+            label: <Link to={`/profile/${user._id}`} style={{ color: 'black', textDecoration: 'none'}}>
                 <div>user: <span color={'blue'}>{user.username}</span></div>
             </Link>,
             value: JSON.stringify({type: 'user', value: user})

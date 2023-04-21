@@ -40,6 +40,10 @@ function App() {
                    element={<Profile likedReviews={true}/>}/>
             <Route path='edit-profile'
                    element={<EditProfile/>}/>
+            <Route path='profile/:uid'
+                   element={<Profile likedReviews={false}/>}/>
+            <Route path='profile/:uid/liked-reviews'
+                   element={<Profile likedReviews={true}/>}/>
           </Routes>
        </Provider>    
       </BrowserRouter>

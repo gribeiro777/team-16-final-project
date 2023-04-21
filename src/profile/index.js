@@ -8,12 +8,23 @@ import authReducer from '../reducers/auth-reducer';
 import ProfileInfo from './profile-info';
 import ProfilePosts from './profile-posts';
 import ProfileFollows from './profile-follows';
-
-const store = configureStore({reducer: {authData: authReducer}})
+import { useParams } from 'react-router';
+import { findUsersThunk } from '../thunks/user-thunks';
 
 function Profile({likedReviews}) {
     const { currentUser } = useSelector((state) => state.authData);
     const dispatch = useDispatch();
+    const { users } = useSelector((state) => state.userData);
+    const { uid } = useParams();
+
+    useEffect(() => {
+        dispatch(findUsersThunk())
+    }, [])
+
+    let user = undefined
+    if (uid) {
+        user = users.find(user => user._id === uid)
+    }
     
     useEffect(() => {
         const getCurrentUser = async () => {
@@ -23,20 +34,18 @@ function Profile({likedReviews}) {
     }, []);
 
     return(
-        <Provider store={store}>
-            <div className="container">
-                <div className="row mt-3">
-                    <div className='col-2 p-0'>
-                        <ProfileInfo currentUser={currentUser}/>
-                        <ProfileFollows/>
-                    </div>
+        <div className="container">
+            <div className="row mt-3">
+                <div className='col-2 p-0'>
+                    <ProfileInfo user={user} currentUser={currentUser}/>
+                    <ProfileFollows/>
+                </div>
 
-                    <div className='col-10'>
-                        <ProfilePosts likedReviews={likedReviews}></ProfilePosts>
-                    </div>
+                <div className='col-10'>
+                    <ProfilePosts likedReviews={likedReviews} user={user}></ProfilePosts>
                 </div>
             </div>
-        </Provider>
+        </div>
     )
 }
 export default Profile;

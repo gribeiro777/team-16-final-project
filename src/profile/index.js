@@ -10,6 +10,7 @@ import ProfilePosts from './profile-posts';
 import ProfileFollows from './profile-follows';
 import { useParams } from 'react-router';
 import { findUsersThunk } from '../thunks/user-thunks';
+import SmallProfile from './small-profile';
 
 function Profile({likedReviews}) {
     const { currentUser } = useSelector((state) => state.authData);
@@ -36,12 +37,16 @@ function Profile({likedReviews}) {
     return(
         <div className="container">
             <div className="row mt-3">
-                <div className='col-2 p-0'>
+                <div className='d-none d-md-block col-md-2 p-0'>
                     <ProfileInfo user={user} currentUser={currentUser}/>
                     <ProfileFollows/>
                 </div>
 
-                <div className='col-10'>
+                <div className='d-block d-md-none col-12'>
+                    <SmallProfile user={user} currentUser={currentUser}/>
+                </div>
+
+                <div className='col-12 col-md-10'>
                     <ProfilePosts likedReviews={likedReviews} user={user}></ProfilePosts>
                 </div>
             </div>

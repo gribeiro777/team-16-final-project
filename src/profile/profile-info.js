@@ -11,8 +11,8 @@ const ProfileInfo = ({user, currentUser}) => {
                     className='rounded-circle img-fluid'></img>
             </div>     
             <h2 className='color-dark-blue text-break' style={{ fontSize: '2vw' }}>{currentUser?.username}</h2>
-            {!user && <h3 className='color-dark-blue my-2' style={{ fontSize: '1vw' }}>{currentUser?.email}</h3>}
-            {!user && <Link to='/edit-profile'>Edit Profile</Link>}
+            {!user && <h3 className='color-dark-blue my-2' style={{ fontSize: '1.3vw' }}>{currentUser?.email}</h3>}
+            {!user && <Link to='/edit-profile' style={{ fontSize: '1.2vw' }}>Edit Profile</Link>}
         </div>
     );
 }

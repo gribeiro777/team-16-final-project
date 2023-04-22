@@ -35,15 +35,14 @@ function Profile({likedReviews}) {
         <div className="container">
             <div className="row mt-3">
                 <div className='d-none d-md-block col-md-2 p-0'>
-                    <ProfileInfo viewingUser={user} currentUser={currentUser}/>
-                    <ProfileFollows/>
+                    <ProfileInfo viewingUser={user} currentUser={currentUser} smallView={false}/>
                 </div>
 
                 <div className='d-block d-md-none col-12'>
-                    <SmallProfile viewingUser={user} currentUser={currentUser}/>
+                    <ProfileInfo viewingUser={user} currentUser={currentUser} smallView={true}/>
                 </div>
 
-                <div className='col-12 col-md-10'>
+                <div className='col-12 col-md-10 ps-4'>
                     <ProfilePosts likedReviews={likedReviews} viewingUser={user}></ProfilePosts>
                 </div>
             </div>

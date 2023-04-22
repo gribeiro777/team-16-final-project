@@ -59,7 +59,6 @@ const userSlice = createSlice({
             },
         [getUserByUsernameThunk.fulfilled]:
             (state, { payload }) => {
-                console.log('payload', payload)
                 state.loading = false
                 state.viewingUser = payload
             },
@@ -82,10 +81,12 @@ const userSlice = createSlice({
         [getUserFollowingThunk.pending]:
             (state) => {
                 state.loading = true
+                state.viewingUserFollowing = []
             },
         [getUserFollowingThunk.fulfilled]:
             (state, { payload }) => {
                 state.loading = false
+                state.viewingUserFollowing = payload
             },
     },
     reducers: {}

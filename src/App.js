@@ -49,7 +49,7 @@ function App() {
                    element={<Profile likedReviews={true}/>}/>
             <Route path='edit-profile'
                    element={<EditProfile/>}/>
-            <Route path='profile/followers'
+            <Route path='profile/following'
                    element={<FollowsPage/>}/>
             <Route path='profile/:username'
                    element={<Profile likedReviews={false}/>}/>

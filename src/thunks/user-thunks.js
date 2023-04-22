@@ -8,6 +8,11 @@ export const findUsersThunk = createAsyncThunk(
         await service.findUsers()
 )
 
+export const findUsersByUsernameThunk = createAsyncThunk(
+    'users/findUserByUsername', async (usernames) =>
+        await service.findUsersByUsername(usernames)
+)
+
 export const followUserThunk = createAsyncThunk(
     'users/followUser', async (uid) =>
         await service.followUser(uid)

@@ -12,6 +12,10 @@ code {
     monospace;
 }
 
+.global-font {
+  font-family: Montserrat;
+}
+
 
 .color-first {
   color: #ececec;
@@ -22,25 +26,25 @@ code {
 }
 
 .color-third {
-  color: #385170; 
+  color: #385170;
 }
 
 .color-fourth {
-  color: #142d4c; 
+  color: #142d4c;
 }
 
-.bg-first { 
-	background: #ececec; 
-}
-	
-.bg-second { 
-	background: #9fd3c7; 
+.bg-first {
+	background: #ececec;
 }
 
-.bg-third { 
-	background: #385170; 
+.bg-second {
+	background: #9fd3c7;
 }
 
-.bg-fourth { 
-	background: #142d4c; 
+.bg-third {
+	background: #385170;
+}
+
+.bg-fourth {
+	background: #142d4c;
 }

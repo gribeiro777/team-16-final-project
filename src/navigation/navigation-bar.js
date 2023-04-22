@@ -26,11 +26,11 @@ const NavigationBar = () => {
                     <span className="navbar-toggler-icon"></span>
                 </button> */}
                 <div className='d-flex align-items-center position-absolute end-0 me-3 h-100 '>
-                {!currentUser && 
+                {!currentUser &&
                 <button class="btn btn-outline-dark" type="button">
                     <Link className='text-decoration-none text-black' to='/login'>Login</Link>
                 </button>
-                }   
+                }
                 {currentUser &&
                     <div class="dropdown">
                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">

@@ -48,7 +48,7 @@ const PostItem = (
                 </div>
                 <div className="col-9">
                     <div><b>{postUsers.length ?
-                        <Link to={`/users/${postUsers.find(entry => entry.username === post.username)._id}`} style={{textDecoration: 'none'}}>
+                        <Link to={`/profile/${postUsers.find(entry => entry.username === post.username)._id}`} style={{textDecoration: 'none'}}>
                             <span className="username">{post.username}</span>
                         </Link> :
                         post.username}</b> <span>&#183;</span> <span className="time">{post.time}</span>

@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
-import { updateUserThunk } from "../thunks/auth-thunks";
+import { getCurrentUserThunk, updateUserThunk } from "../thunks/auth-thunks";
 
 const EditProfile = () => {
     const { loading, currentUser } = useSelector(state => state.authData)
@@ -14,6 +14,13 @@ const EditProfile = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const getCurrentUser = async () => {
+            const { payload } = await dispatch(getCurrentUserThunk()).unwrap();
+        }
+        getCurrentUser();
+    }, []);
 
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
@@ -68,7 +75,7 @@ const EditProfile = () => {
               id="username"
               value={username}
               onChange={handleUsernameChange}
-              placeholder={currentUser.username}
+              placeholder={currentUser?.username}
             />
           </div>
 
@@ -80,7 +87,7 @@ const EditProfile = () => {
               id="email"
               value={email}
               onChange={handleEmailChange}
-              placeholder={currentUser.email}
+              placeholder={currentUser?.email}
             />
           </div>
 

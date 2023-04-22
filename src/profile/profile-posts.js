@@ -1,33 +1,49 @@
 import React from "react";
+import './style/profile-posts.css';
+import { Link } from "react-router-dom";
 
-export default function ProfilePosts() {
+const MyReviews = ({myReviewsLink, likedReviewsLink}) => {
     return (
-        <div className='text-center'>
-            <div className='p-2 mb-5'>
-                <h1>My Reviews</h1>
-                <div>
-                    <ul className='list-group'>
-                        <li className='list-group-item'>Review 1</li>
-                        <li className='list-group-item'>Review 2</li>
-                        <li className='list-group-item'>Review 3</li>
-                        <li className='list-group-item'>Review 4</li>
-                        <li className='list-group-item'>Review 5</li>
-                    </ul>
-                </div>
-            </div>
-            <div className='p-2'>
-                <h1>Liked Reviews</h1>
-                <div>
-                <ul className='list-group'>
-                        <li className='list-group-item'>Review 1</li>
-                        <li className='list-group-item'>Review 2</li>
-                        <li className='list-group-item'>Review 3</li>
-                        <li className='list-group-item'>Review 4</li>
-                        <li className='list-group-item'>Review 5</li>
-                    </ul>
-                </div>
-            </div>
-
+        <div>
+            <ul class="nav nav-tabs nav-fill">
+                <li class="nav-item bg-second rounded-top">
+                    <Link to={myReviewsLink} class="nav-link text-dark" href="#">My Reviews</Link>
+                </li>
+                <li class="nav-item">
+                    <Link to={likedReviewsLink} class="nav-link text-light" href="#">Liked Reviews</Link>
+                </li>
+            </ul>
         </div>
     );
+}
+
+const LikedReviews = ({myReviewsLink, likedReviewsLink}) => {
+    return (
+        <div>
+            <ul class="nav nav-tabs nav-fill">
+                <li class="nav-item">
+                    <Link to={myReviewsLink} class="nav-link text-light" href="#">My Reviews</Link>
+                </li>
+                <li class="nav-item bg-second rounded-top">
+                    <Link to={likedReviewsLink} class="nav-link text-dark" href="#">Liked Reviews</Link>
+                </li>
+            </ul>
+        </div>
+    );
+}
+
+
+export default function ProfilePosts({likedReviews, user}) {
+    let myReviewsLink = '/profile';
+    let likedReviewsLink = '/profile/liked-reviews';
+    if (user) {
+        myReviewsLink = `/profile/${user._id}`
+        likedReviewsLink = `/profile/${user._id}/liked-reviews`
+    }
+    
+    if (!likedReviews) {
+        return <MyReviews myReviewsLink={myReviewsLink} likedReviewsLink={likedReviewsLink}/>
+    } else {
+        return <LikedReviews myReviewsLink={myReviewsLink} likedReviewsLink={likedReviewsLink}/>
+    }
 }

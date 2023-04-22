@@ -15,3 +15,36 @@ code {
 .global-font {
   font-family: Montserrat;
 }
+
+
+.color-first {
+  color: #ececec;
+}
+
+.color-second {
+  color: #9fd3c7;
+}
+
+.color-third {
+  color: #385170;
+}
+
+.color-fourth {
+  color: #142d4c;
+}
+
+.bg-first {
+	background: #ececec;
+}
+
+.bg-second {
+	background: #9fd3c7;
+}
+
+.bg-third {
+	background: #385170;
+}
+
+.bg-fourth {
+	background: #142d4c;
+}

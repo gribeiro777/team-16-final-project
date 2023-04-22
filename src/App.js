@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
-import './index.css'
+import './index.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import {BrowserRouter} from "react-router-dom";
 import {Routes, Route} from "react-router";
 import Home from "./home";
@@ -35,9 +36,15 @@ function App() {
             <Route path='register'
                    element={<Register/>}/>
             <Route path='profile'
-                   element={<Profile/>}/>
+                   element={<Profile likedReviews={false}/>}/>
+            <Route path='profile/liked-reviews'
+                   element={<Profile likedReviews={true}/>}/>
             <Route path='edit-profile'
                    element={<EditProfile/>}/>
+            <Route path='profile/:uid'
+                   element={<Profile likedReviews={false}/>}/>
+            <Route path='profile/:uid/liked-reviews'
+                   element={<Profile likedReviews={true}/>}/>
           </Routes>
        </Provider>    
       </BrowserRouter>

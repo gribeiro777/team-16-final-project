@@ -48,7 +48,7 @@ const RegisterForm = () => {
             }
             try {
                 await dispatch(registerThunk(newUser)).unwrap()
-                navigate('/');
+                navigate('/profile');
             } catch (error) {
                 alert('Username or email already exists. Please try again.');
             }

@@ -21,14 +21,14 @@ const PostItem = (
 ) => {
     const {postUsers} = useSelector(state => state.userData)
 
-    // const [postUser, setPostUser] = useState({username: 'Loading', email: 'loading@loading.com'})
-    //
+    // const {user} = useSelector(state => state.spotifyData)
+    // const dispatch = useDispatch();
     // useEffect(() => {
-    //     console.log('trying')
-    //     setPostUser(postUsers.length ? postUsers.find(entry => entry.username === post.username)._id : postUser)
-    // })
-    console.log(post.artists)
-
+    //     if (post.spotifyID) {
+    //         dispatch(getTrackThunk(post.spotifyID))
+    //         console.log('getting track')
+    //     }
+    // }, [])
 
     return(
         <li className="list-group-item main-color text-white border-white">
@@ -55,6 +55,9 @@ const PostItem = (
                         <i className="bi bi-x-lg float-end"></i>
                     </div>
                     <div>{post.review}</div>
+                </div>
+                <div className="col-2">
+
                 </div>
             </div>
             <div className="row"></div>

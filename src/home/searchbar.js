@@ -45,7 +45,7 @@ const SearchBar = ({noOptions}) => {
         const selected = JSON.parse(e.value)
         switch (selected.type) {
             case 'user':
-                navigate(`/profile/${selected.value._id}`)
+                navigate(`/profile/${selected.value.username}`)
                 break
             case 'track':
                 navigate(`/tracks/${selected.value.id}`, )
@@ -86,7 +86,7 @@ const SearchBar = ({noOptions}) => {
     const displayedUsers = searchedUsers ?
         searchedUsers.slice(0,3).map(user => {
         return ({
-            label: <Link to={`/profile/${user._id}`} style={{ color: 'black', textDecoration: 'none'}}>
+            label: <Link to={`/profile/${user.username}`} style={{ color: 'black', textDecoration: 'none'}}>
                 <div><img className="rounded-4" src="idk.com" height="36px" width="36px"/> {user.username} (user)</div>
             </Link>,
             value: JSON.stringify({type: 'user', value: user})

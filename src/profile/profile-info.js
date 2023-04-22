@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { followUserThunk, unfollowUserThunk } from "../thunks/user-thunks";
 import { useEffect, useState } from "react";
 
-const ProfileInfo = ({user, currentUser}) => {
+const ProfileInfo = ({viewingUser, currentUser}) => {
     const [following, setFollowing] = useState(false);
     const dispatch = useDispatch();
     const followUser = async () => {
         try {
-            await dispatch(followUserThunk(user.username)).unwrap()
+            await dispatch(followUserThunk(viewingUser.username)).unwrap()
             setFollowing(true)
         } catch (error) {
             alert('Error following user. Please try again.');
@@ -17,7 +17,7 @@ const ProfileInfo = ({user, currentUser}) => {
 
     const unfollowUser = async () => {
         try {
-            await dispatch(unfollowUserThunk(user.username)).unwrap()
+            await dispatch(unfollowUserThunk(viewingUser.username)).unwrap()
             setFollowing(false)
         } catch (error) {
             alert('Error unfollowing user. Please try again.');
@@ -25,16 +25,17 @@ const ProfileInfo = ({user, currentUser}) => {
     }
 
     useEffect(() => {
-        if (currentUser?.following?.includes(user?.username)) {
+        console.log(currentUser?.following)
+        if (currentUser?.following?.includes(viewingUser?.username)) {
             setFollowing(true);
         } else {
             setFollowing(false);
         }
-    }, [currentUser, user])
+    }, [currentUser, viewingUser])
 
     let username = currentUser?.username;
-    if (user) {
-        username = user?.username;
+    if (viewingUser) {
+        username = viewingUser?.username;
     }
 
     return (
@@ -44,13 +45,13 @@ const ProfileInfo = ({user, currentUser}) => {
                     className='rounded-circle img-fluid'></img>
             </div>     
             <h2 className='color-dark-blue text-break' style={{ fontSize: '2vw' }}>{username}</h2>
-            {!user && <h3 className='color-dark-blue my-2' style={{ fontSize: '1.3vw' }}>{currentUser?.email}</h3>}
-            {!user && <Link to='/edit-profile' style={{ fontSize: '1.2vw' }}>Edit Profile</Link>}
+            {!viewingUser && <h3 className='color-dark-blue my-2' style={{ fontSize: '1.3vw' }}>{currentUser?.email}</h3>}
+            {!viewingUser && <Link to='/edit-profile' style={{ fontSize: '1.2vw' }}>Edit Profile</Link>}
             
-            {user && !following && 
+            {viewingUser && !following && 
                 <button className='btn btn-primary mt-3' style={{ fontSize: '1.2vw' }} onClick={followUser}>Follow</button>
             }
-            {user && following && 
+            {viewingUser && following && 
                 <button className='btn btn-primary mt-3' style={{ fontSize: '1.2vw' }} onClick={unfollowUser}>Unfollow</button>
             }
         </div>

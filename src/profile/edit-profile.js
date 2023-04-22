@@ -16,10 +16,7 @@ const EditProfile = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const getCurrentUser = async () => {
-            const { payload } = await dispatch(getCurrentUserThunk()).unwrap();
-        }
-        getCurrentUser();
+      dispatch(getCurrentUserThunk());
     }, []);
 
     const handleUsernameChange = (event) => {

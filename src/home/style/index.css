@@ -20,3 +20,16 @@ body {
     padding-top: 16px;
     padding-bottom: 16px;
 }
+
+.username {
+    color: white;
+}
+
+.username:hover {
+    text-decoration: underline;
+}
+
+.time {
+    color:silver;
+    font-size: 14px;
+}

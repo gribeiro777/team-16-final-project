@@ -19,7 +19,7 @@ const NavigationBar = () => {
     }
 
     return (
-        <div class='d-flex justify-content-center align-items-end bg-secondary position-relative'>
+        <div className='d-flex justify-content-center align-items-end bg-secondary position-relative'>
             <Link className='text-decoration-none text-black' to='/'><h2>Explore</h2></Link>
             <Link className='text-decoration-none text-black' to='/'><h1 className='px-5'>Website</h1></Link>
             <Link className='text-decoration-none text-black' to='/'><h2>Personal</h2></Link>

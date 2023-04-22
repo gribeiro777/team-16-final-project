@@ -3,13 +3,24 @@ import {useDispatch, useSelector} from "react-redux";
 import PostItem
     from "./post-list-item";
 import {findPostsThunk} from "../../thunks/post-thunks";
+import {findUsersByUsernameThunk} from "../../thunks/user-thunks";
 
 const PostsList = () => {
-    const {posts} = useSelector(state => state.postData)
+    const {posts, loading, loadingPostUsers} = useSelector(state => state.postData)
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(findPostsThunk())
     }, [])
+
+    useEffect(() => {
+        if (posts.length && !loadingPostUsers) {
+            dispatch(findUsersByUsernameThunk(posts.map(post => post.username)))
+            console.log('dispatching')
+            console.log(posts.map(post => post.username))
+        }
+    }, [posts])
+
+
     return <div>
         <ul className="list-group">
             {

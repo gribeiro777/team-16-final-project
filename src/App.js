@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
+import './index.css'
 import {BrowserRouter} from "react-router-dom";
 import {Routes, Route} from "react-router";
 import Home from "./home";
@@ -14,12 +15,13 @@ import spotifyReducer from "./reducers/spotify-reducer";
 import userReducer from "./reducers/user-reducer";
 import authReducer from "./reducers/auth-reducer";
 import EditProfile from './profile/edit-profile';
+import "@fontsource/montserrat";
 
 function App() {
   const store = configureStore({reducer: {spotifyData: spotifyReducer, userData: userReducer, authData: authReducer}})
 
   return (
-       <div>
+       <div className="global-font">
       <BrowserRouter>
       <Provider store={store}>
           <Navigation/>

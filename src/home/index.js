@@ -16,17 +16,13 @@ function Home() {
         <Provider store={store}>
         <div className="body">
             <div className="row">
-                <div className="col-2 secondary-color">
-                    <div className="col-8 card main-card main-color">
-                        <div className="row">
-                        </div>
-                    </div>
+                <div className="col-2 secondary-color ps-lg-5">
                 </div>
                 <div className="col-8 card main-card main-color">
                     <div className="row search-bar">
                         <SearchBar></SearchBar>
                     </div>
-                    <div className='row'>
+                    <div className='row pt-5'>
                         <PostsList></PostsList>
                     </div>
                 </div>

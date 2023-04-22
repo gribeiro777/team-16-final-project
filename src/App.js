@@ -35,9 +35,15 @@ function App() {
             <Route path='register'
                    element={<Register/>}/>
             <Route path='profile'
-                   element={<Profile/>}/>
+                   element={<Profile likedReviews={false}/>}/>
+            <Route path='profile/liked-reviews'
+                   element={<Profile likedReviews={true}/>}/>
             <Route path='edit-profile'
                    element={<EditProfile/>}/>
+            <Route path='profile/:uid'
+                   element={<Profile likedReviews={false}/>}/>
+            <Route path='profile/:uid/liked-reviews'
+                   element={<Profile likedReviews={true}/>}/>
           </Routes>
        </Provider>    
       </BrowserRouter>

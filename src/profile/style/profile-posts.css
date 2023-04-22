@@ -1,0 +1,7 @@
+.nav-link {
+    color: 'red';
+}
+
+.nav .nav-item .nav-link .active {
+    background-color: 'red';
+}

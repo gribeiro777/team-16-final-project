@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {findUsersThunk, createUserThunk}
+import {findUsersThunk, createUserThunk, followUserThunk, getUserFollowingThunk, unfollowUserThunk}
     from "../thunks/user-thunks";
 
 
@@ -26,6 +26,30 @@ const userSlice = createSlice({
             (state, action) => {
                 state.loading = false
                 state.error = action.error
+            },
+        [followUserThunk.pending]:
+            (state) => {
+                state.loading = true
+            },
+        [followUserThunk.fulfilled]:
+            (state, { payload }) => {
+                state.loading = false
+            },
+        [unfollowUserThunk.pending]:
+            (state) => {
+                state.loading = true
+            },
+        [unfollowUserThunk.fulfilled]:
+            (state, { payload }) => {
+                state.loading = false
+            },
+        [getUserFollowingThunk.pending]:
+            (state) => {
+                state.loading = true
+            },
+        [getUserFollowingThunk.fulfilled]:
+            (state, { payload }) => {
+                state.loading = false
             },
     },
     reducers: {}

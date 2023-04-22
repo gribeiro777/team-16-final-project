@@ -9,7 +9,7 @@ export const UserListItem = ({user}) => {
                         className='img-fluid rounded-circle' alt='Avatar'/>
                 </div>
                 <div className='col-8'>
-                    <h5>{user.username}</h5>
+                    <span style={{ fontSize: '1vw' }}>{user.username}</span>
                 </div>
             </div>
         </li>

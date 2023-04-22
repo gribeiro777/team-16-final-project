@@ -45,10 +45,8 @@ export const ReviewForm = ({currentTrack}) => {
         };
         try {
             await dispatch(createPostThunk(post)).unwrap();
-            console.log("post created");
         } catch (err) {
             alert(err);
-            console.log(err)
         }
     }
 

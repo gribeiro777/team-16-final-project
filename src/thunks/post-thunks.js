@@ -4,8 +4,8 @@ import * as service
     from "../services/post-service"
 
 export const findPostsThunk = createAsyncThunk(
-    'posts/findUsers', async () =>
-        await service.findPosts()
+    'posts/findPosts', async (uid) =>
+        await service.findPosts(uid)
 )
 
 export const createPostThunk = createAsyncThunk(

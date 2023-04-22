@@ -30,17 +30,14 @@ const spotifySlice = createSlice({
             },
         [getTrackThunk.pending]:
             (state) => {
-                console.log('pending spot')
             },
         [getTrackThunk.fulfilled]:
             (state, { payload }) => {
                 state.currentTrack = payload
-                console.log(payload)
             },
         [getTrackThunk.rejected]:
             (state, action) => {
                 state.error = action.error
-                console.log(action.error)
             },
     },
     reducers: {}

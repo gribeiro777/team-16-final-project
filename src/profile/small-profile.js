@@ -24,7 +24,6 @@ const SmallProfile = ({user, currentUser}) => {
     }
 
     useEffect(() => {
-        console.log(currentUser?.following)
         if (currentUser?.following?.includes(user?.username)) {
             setFollowing(true);
         } else {

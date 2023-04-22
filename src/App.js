@@ -28,7 +28,9 @@ function App() {
           <Navigation/>
           <Routes>
             <Route index
-                   element={<Home/>}/>
+                   element={<Home explore={false}/>}/>
+            <Route path='/explore'
+                   element={<Home explore={true}/>}/>
             <Route path='/tracks/:tid'
                    element={<Track/>}/>
             <Route path='login'

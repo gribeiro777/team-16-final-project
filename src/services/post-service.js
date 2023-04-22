@@ -5,13 +5,8 @@ const api = axios.create({
         withCredentials: true
     })
     
-export const findPosts = async () => {
-
-    const api = axios.create({
-        withCredentials: true
-    })
-
-    const response = await axios.get(`${DB_URL}/get-all-posts`);
+export const findPosts = async (username) => {
+    const response = username ? await axios.get(`${DB_URL}/get-posts-from-following/${username}`) : await axios.get(`${DB_URL}/get-all-posts`)
     const posts = response.data;
 
     return posts

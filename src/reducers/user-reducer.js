@@ -1,22 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-<<<<<<< HEAD
-import {findUsersThunk, createUserThunk, followUserThunk, getUserFollowingThunk, unfollowUserThunk}
-=======
-import {findUsersThunk, findUsersByUsernameThunk, followUserThunk, getUserFollowingThunk, unfollowUserThunk, getUserByUsernameThunk}
->>>>>>> 05cfe5a (user proper thunks)
+import {findUsersThunk, findUsersByUsernameThunk, followUserThunk, getUserFollowingThunk, unfollowUserThunk, getUserByUsernameThunk, getUserFollowersThunk}
     from "../thunks/user-thunks";
 
 const initialState = {
     users: [],
     loading: false,
-<<<<<<< HEAD
-=======
     postUsers: {},
     loadingPostUsers: false,
     viewingUser: null,
     viewingUserFollowing: [],
     viewingUserFollowers: [],
->>>>>>> 05cfe5a (user proper thunks)
 }
 
 const userSlice = createSlice({
@@ -87,6 +80,16 @@ const userSlice = createSlice({
             (state, { payload }) => {
                 state.loading = false
                 state.viewingUserFollowing = payload
+            },
+        [getUserFollowersThunk.pending]:
+            (state) => {
+                state.loading = true
+                state.viewingUserFollowers = []
+            },
+        [getUserFollowersThunk.fulfilled]:
+            (state, { payload }) => {
+                state.loading = false
+                state.viewingUserFollowers = payload
             },
     },
     reducers: {}

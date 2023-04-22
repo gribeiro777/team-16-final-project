@@ -27,7 +27,7 @@ function Profile({likedReviews}) {
     }, [dispatch, username])
 
     let user = undefined;
-    if (username) {
+    if (username && username !== currentUser?.username) {
         user = viewingUser;
     }
 

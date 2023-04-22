@@ -49,3 +49,10 @@ export const getUserFollowing = async (username) => {
 
     return following
 }
+
+export const getUserFollowers = async (username) => {
+    const response = await api.get(`${DB_URL}/get-user-followers/${username}`);
+    const followers = response.data;
+
+    return followers
+}

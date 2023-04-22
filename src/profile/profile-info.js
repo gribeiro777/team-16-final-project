@@ -36,10 +36,14 @@ const ProfileInfo = ({viewingUser, currentUser, smallView}) => {
     let username = currentUser?.username;
     let followersLink = '/profile/followers';
     let followingLink = '/profile/following';
+    let followingLength = currentUser?.following.length;
+    let followersLength = currentUser?.followers.length;
     if (viewingUser) {
         username = viewingUser?.username;
         followersLink = `/profile/${viewingUser.username}/followers`;
         followingLink = `/profile/${viewingUser.username}/following`;
+        followingLength = viewingUser?.following.length;
+        followersLength = viewingUser?.followers.length;
     }
 
     if (!smallView) {
@@ -55,8 +59,8 @@ const ProfileInfo = ({viewingUser, currentUser, smallView}) => {
                 <h2 className='color-dark-blue text-break' style={{ fontSize: '1.8vw' }}>{username}</h2>
                 {!viewingUser && <h3 className='color-dark-blue my-2' style={{ fontSize: '1.2vw' }}>{currentUser?.email}</h3>}
                 
-                <Link to={followersLink} className='d-block color-fourth mt-2 text-decoration-none' style={{ fontSize: '1vw' }}>{currentUser?.followers.length} Followers</Link>
-                <Link to={followingLink} className='d-block color-fourth text-decoration-none' style={{ fontSize: '1vw' }}>{currentUser?.following.length} Following</Link>
+                <Link to={followersLink} className='d-block color-fourth mt-2 text-decoration-none' style={{ fontSize: '1vw' }}>{followersLength} Followers</Link>
+                <Link to={followingLink} className='d-block color-fourth text-decoration-none' style={{ fontSize: '1vw' }}>{followingLength} Following</Link>
                 
                 {viewingUser && !following && 
                     <button className='btn btn-primary mt-3' style={{ fontSize: '1.2vw' }} onClick={followUser}>Follow</button>
@@ -85,8 +89,8 @@ const ProfileInfo = ({viewingUser, currentUser, smallView}) => {
                     <h2 className='color-fourth text-break mb-0' style={{ fontSize: '9vw' }}>{username}</h2>
                     {!viewingUser && <h3 className='color-fourth mb-0' style={{ fontSize: '4vw' }}>{currentUser?.email}</h3>}
                     
-                    <span className='color-fourth mt-2'><Link to={followersLink} className='color-fourth mt-2 text-decoration-none' style={{ fontSize: '2vw' }}>{currentUser?.followers.length} Followers</Link> • { }
-                    <Link to={followingLink} className='color-fourth text-decoration-none' style={{ fontSize: '2vw' }}>{currentUser?.following.length} Following</Link></span>
+                    <span className='color-fourth mt-2'><Link to={followersLink} className='color-fourth mt-2 text-decoration-none' style={{ fontSize: '2vw' }}>{followersLength} Followers</Link> • { }
+                    <Link to={followingLink} className='color-fourth text-decoration-none' style={{ fontSize: '2vw' }}>{followingLength} Following</Link></span>
                 </div>
             </div>
         );

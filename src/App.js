@@ -50,13 +50,19 @@ function App() {
             <Route path='edit-profile'
                    element={<EditProfile/>}/>
             <Route path='profile/following'
-                   element={<FollowsPage/>}/>
+                   element={<FollowsPage followers={false}/>}/>
+            <Route path='profile/followers'
+                   element={<FollowsPage followers={true}/>}/>                   
             <Route path='profile/:username'
                    element={<Profile likedReviews={false}/>}/>
             <Route path='profile/:username/liked-reviews'
                    element={<Profile likedReviews={true}/>}/>'
             <Route path='search/:query'
                      element={<Search/>}/>       
+            <Route path='profile/:username/following'
+                   element={<FollowsPage followers={false}/>}/>
+            <Route path='profile/:username/followers'
+                   element={<FollowsPage followers={true}/>}/>       
           </Routes>
        </Provider>    
       </BrowserRouter>

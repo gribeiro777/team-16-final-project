@@ -32,3 +32,8 @@ export const getUserFollowingThunk = createAsyncThunk(
     'users/getUserFollowing', async (username) =>
         await service.getUserFollowing(username)
 )
+
+export const getUserFollowersThunk = createAsyncThunk(
+    'users/getUserFollowers', async (username) =>
+        await service.getUserFollowers(username)
+)

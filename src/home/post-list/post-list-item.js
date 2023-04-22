@@ -34,7 +34,7 @@ const PostItem = (
         <li className="list-group-item">
             <div className="row">
                 <div className="col justify-content-center">
-                    <img className="rounded-circle" height={64} src={`/images/${post.image}`}/>
+                    <img className="rounded-circle" height={64} src={post.albumArt}/>
                 </div>
                 <div className="col-10">
                     <div><b>{post.username}</b> <span>&#183;</span> {post.time}

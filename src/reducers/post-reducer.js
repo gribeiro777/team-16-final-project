@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {findPostsThunk}
+import {createPostThunk, findPostsThunk}
     from "../thunks/post-thunks";
 
 
@@ -22,6 +22,10 @@ const postSlice = createSlice({
         [findPostsThunk.rejected]:
             (state, action) => {
                 state.error = action.error
+            },
+        [createPostThunk.fulfilled]:
+            (state, { payload }) => {
+                state.posts.unshift(payload)
             },
     },
     reducers: {}

@@ -53,7 +53,7 @@ const ProfileInfo = ({viewingUser, currentUser, smallView}) => {
                 {!viewingUser && <Link to='/edit-profile' className='d-block mt-2' style={{ fontSize: '0.8vw' }}>Edit Profile</Link>}
                 
                 <div className='px-2 my-2'>
-                    <img alt='profile' src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                    <img alt='profile' src={`https://picsum.photos/seed/${username}/600`}
                             className='rounded-circle img-fluid'></img>
                 </div>     
                 <h2 className='color-dark-blue text-break' style={{ fontSize: '1.8vw' }}>{username}</h2>
@@ -74,7 +74,7 @@ const ProfileInfo = ({viewingUser, currentUser, smallView}) => {
         return (
             <div className='row border rounded-4 mb-3 py-2 mx-0 bg-second'>
                 <div className='col-4'>
-                    <img alt='profile' src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                    <img alt='profile' src={`https://picsum.photos/seed/${username}/600`}
                             className='rounded-circle img-fluid'></img>
                 </div>
                 <div className='col-8 position-relative d-flex flex-column justify-content-end'>

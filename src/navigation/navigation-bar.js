@@ -34,7 +34,7 @@ const NavigationBar = () => {
                 {currentUser &&
                     <div class="dropdown">
                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img alt='profile' src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png' width='40px' className='img-fluid rounded-circle'/>
+                            <img alt='profile' src={`https://picsum.photos/seed/${currentUser?.username}/600`} width='40px' className='img-fluid rounded-circle'/>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
                             <li><Link className='dropdown-item' to='/profile'>Profile</Link></li>

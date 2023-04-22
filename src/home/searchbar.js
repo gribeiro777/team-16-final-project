@@ -91,7 +91,6 @@ const SearchBar = () => {
     }) : []
     const displayedTracks = tracks ? tracks.map(track => {
         const image = track.album.images[0]
-        console.log(image.url)
         const image_label = <img src={image.url} alt={''} height="36px" width="36px"></img>
         const song_label = `${track.name} - ${track.artists.map(artist => artist.name).join(', ')}`
         return ({
@@ -108,7 +107,7 @@ const SearchBar = () => {
             styles={{
                 control: (baseStyles, state) => ({
                     ...baseStyles,
-                    backgroundColor: "#233142",
+                    backgroundColor: "white",
                 }),
             }}
             options={searchInput ? [moreOptions, ...displayedUsers, ...displayedTracks] : []}

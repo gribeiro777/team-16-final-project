@@ -3,7 +3,7 @@ import NavigationBar from "./navigation-bar";
 
 const Navigation = () => {
     return (
-        <div>
+        <div className="sticky-top">
             <NavigationBar></NavigationBar>
         </div>
     );

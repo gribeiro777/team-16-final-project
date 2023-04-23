@@ -19,7 +19,7 @@ const NavigationBar = () => {
     }
 
     return (
-        <nav className="nav navbar accent-color">
+        <nav className="nav navbar accent-color secondary-color-border">
             <div className="container-fluid">
                 <Link className="navbar-brand" to="/">Website</Link>
                 {/* <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,7 +27,7 @@ const NavigationBar = () => {
                 </button> */}
                 <div className='d-flex align-items-center position-absolute end-0 me-3 h-100 '>
                 {!currentUser &&
-                <button class="btn btn-outline-dark" type="button">
+                <button className="btn btn-outline-dark" type="button">
                     <Link className='text-decoration-none text-black' to='/login'>Login</Link>
                 </button>
                 }

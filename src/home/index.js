@@ -36,7 +36,7 @@ function Home({explore}) {
 
     const PostNav = ({exploreActive}) => {
         return (
-            <div className="pt-xl-5">
+            <div className="pt-5">
                 <ul class="nav nav-tabs nav-fill accent-border">
                     <li class={`nav-item ${!exploreActive ? 'secondary-color' : '' } rounded-top`}>
                         <Link to={"/"} class={`nav-link ${exploreActive ? 'text-dark' : 'text-light'}`} href="#">People you follow</Link>
@@ -52,17 +52,17 @@ function Home({explore}) {
     return(
         <Provider store={store}>
         <div className="secondary-color">
-            <div className="row">
-                <div className="col-2 secondary-color ps-lg-5">
+            <div className="row" style={{"min-height": "90vh"}}>
+                <div className="col-2 secondary-color ps-5">
                 </div>
-                <div className="col-8 card main-card main-color">
-                    <div className="row search-bar card pt-2 main-color border-0 sticky-top">
+                <div className="col-8 card main-card main-color mt-5">
+                    <div className="row search-bar pt-2 main-color border-0 sticky-top">
                         <SearchBar></SearchBar>
                     </div>
-                    <PostNav exploreActive={explore}/>
-                    <div className='row min-vh-100 pt-3'>
-                        <h2 className="pb-2">Latest reviews</h2>
-                        <PostsList user={explore ? null : postListUser}></PostsList>
+                    {currentUser ? <PostNav exploreActive={explore}/> : ''}
+                    <div className='row pt-3'>
+                        <h2 className="pb-2 pt-5">Latest reviews</h2>
+                        <PostsList user={explore || !currentUser ? null : postListUser}></PostsList>
                     </div>
                 </div>
                 <div className="col-2 secondary-color">

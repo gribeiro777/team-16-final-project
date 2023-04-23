@@ -10,6 +10,8 @@ const RegisterForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [isAdmin, setIsAdmin] = useState(false);
+    const [adminCode, setAdminCode] = useState("");
     const {loading} = useSelector(state => state.authData)
 
     const dispatch = useDispatch();
@@ -31,16 +33,26 @@ const RegisterForm = () => {
         setConfirmPassword(event.target.value);
     };
 
+    const handleAdminStatusChange = (event) => {
+        setIsAdmin(!isAdmin);
+    };
+
+    const handleAdminCodeChange = (event) => {
+        setAdminCode(event.target.value);
+    };
+
     const handleSubmit = async (event) => {
         if (password !== confirmPassword) {
             alert('Passwords do not match. Please try again.');
+        } else if (isAdmin && adminCode !== 'admin') {
+            alert('Incorrect admin code. Please try again.');
         } else {
             event.preventDefault();
             const newUser = {
                 username: username,
                 password: password,
                 email: email,
-                isAdmin: false,
+                isAdmin: isAdmin,
                 followers: [],
                 following: [],
                 likedPosts: [],
@@ -106,6 +118,28 @@ const RegisterForm = () => {
               onChange={handleConfirmPasswordChange}
               required
             />
+          </div>
+
+          <div className='d-flex align-items-center mb-4'>
+            <div className='form-check form-switch me-3'>
+              <input class='form-check-input' 
+                     type='checkbox' 
+                     role='switch' 
+                     id='isAdmin'
+                     checked={isAdmin}
+                     onChange={handleAdminStatusChange}/>
+              <label class='form-check-label' for='isAdmin'>Admin</label>
+            </div>
+            <div className='form-group flex-fill'>
+              <input
+                type="password"
+                className="form-control"
+                id="adminCode"
+                placeholder="Admin Code"
+                value={adminCode}
+                onChange={handleAdminCodeChange}
+              />
+            </div>
           </div>
 
           <div className='text-center'>

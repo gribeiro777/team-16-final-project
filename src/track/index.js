@@ -1,13 +1,13 @@
 import { useParams } from 'react-router';
 import TrackInfo from "./track-info";
 
-function Track() {
+function Track({explore}) {
     const { tid } = useParams();
 
     return(
         <div className="container">
             <div className="row">
-                <TrackInfo tid={tid}></TrackInfo>
+                <TrackInfo tid={tid} explore={explore}></TrackInfo>
             </div>
         </div>
     )}

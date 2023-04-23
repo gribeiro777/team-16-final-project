@@ -8,7 +8,27 @@ export const findPostsThunk = createAsyncThunk(
         await service.findPosts(uid)
 )
 
+export const findUserPostsThunk = createAsyncThunk(
+    'posts/getUserPosts', async (uid) =>
+        await service.findUserPosts(uid)
+)
+
 export const createPostThunk = createAsyncThunk(
     'posts/createPost', async (post) =>
         await service.createPost(post)
+)
+
+export const deletePostThunk = createAsyncThunk(
+    'posts/deletePost', async (postID) =>
+        await service.deletePost(postID)
+)
+
+export const getPostByTrackIDThunk = createAsyncThunk(
+    'posts/getPostByTrackID', async (trackID) =>
+        await service.getPostByTrackID(trackID)
+)
+
+export const getPostsFromFollowingTrackIdThunk = createAsyncThunk(
+    'posts/getPostsFromFollowingTrackId', async (trackId) =>
+        await service.getPostsFromFollowingTrackId(trackId)
 )

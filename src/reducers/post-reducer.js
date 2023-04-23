@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {createPostThunk, findPostsThunk}
+import {createPostThunk, deletePostThunk, findPostsThunk, findUserPostsThunk, getPostByTrackIDThunk, getPostsFromFollowingTrackIdThunk}
     from "../thunks/post-thunks";
 
 
 const initialState = {
-    posts: []
+    posts: [],
 }
 
 const postSlice = createSlice({
@@ -23,9 +23,29 @@ const postSlice = createSlice({
             (state, action) => {
                 state.error = action.error
             },
+        [findUserPostsThunk.pending]:
+            (state) => {
+                state.posts = []
+            },
+        [findUserPostsThunk.fulfilled]:
+            (state, { payload }) => {
+                state.posts = payload
+            },
         [createPostThunk.fulfilled]:
             (state, { payload }) => {
                 state.posts.unshift(payload)
+            },
+        [deletePostThunk.fulfilled]:
+            (state, { payload }) => {
+                state.posts = state.posts.filter(post => post._id !== payload._id)
+            },
+        [getPostByTrackIDThunk.fulfilled]:
+            (state, { payload }) => {
+                state.posts = payload
+            },
+        [getPostsFromFollowingTrackIdThunk.fulfilled]:
+            (state, { payload }) => {
+                state.posts = payload
             },
     },
     reducers: {}

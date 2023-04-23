@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { followUserThunk, unfollowUserThunk } from "../thunks/user-thunks";
 
-const SmallProfile = ({user, currentUser}) => {
+const SmallProfile = ({viewingUser, currentUser}) => {
     const [following, setFollowing] = useState(false);
     const dispatch = useDispatch();
     const followUser = async () => {
         try {
-            await dispatch(followUserThunk(user.username)).unwrap()
+            await dispatch(followUserThunk(viewingUser.username)).unwrap()
             setFollowing(true)
         } catch (error) {
             alert('Error following user. Please try again.');
@@ -16,7 +16,7 @@ const SmallProfile = ({user, currentUser}) => {
 
     const unfollowUser = async () => {
         try {
-            await dispatch(unfollowUserThunk(user.username)).unwrap()
+            await dispatch(unfollowUserThunk(viewingUser.username)).unwrap()
             setFollowing(false)
         } catch (error) {
             alert('Error unfollowing user. Please try again.');
@@ -24,16 +24,16 @@ const SmallProfile = ({user, currentUser}) => {
     }
 
     useEffect(() => {
-        if (currentUser?.following?.includes(user?.username)) {
+        if (currentUser?.following?.includes(viewingUser?.username)) {
             setFollowing(true);
         } else {
             setFollowing(false);
         }
-    }, [currentUser, user])
+    }, [currentUser, viewingUser])
 
     let username = currentUser?.username;
-    if (user) {
-        username = user?.username;
+    if (viewingUser) {
+        username = viewingUser?.username;
     }
 
     return (
@@ -43,16 +43,16 @@ const SmallProfile = ({user, currentUser}) => {
                         className='rounded-circle img-fluid'></img>
             </div>
             <div className='col-8 position-relative d-flex flex-column justify-content-end'>
-                {user && !following &&
+                {viewingUser && !following &&
                     <button className='btn btn-primary position-absolute end-0 top-0 me-3 mt-2' style={{ fontSize: '2vw' }} onClick={followUser}>Follow</button>
                 }
-                {user && following &&
+                {viewingUser && following &&
                     <button className='btn btn-primary position-absolute end-0 top-0 me-3 mt-2' style={{ fontSize: '2vw' }} onClick={unfollowUser}>Unfollow</button>
                 }
 
-                {!user && <a href='/edit-profile' style={{ fontSize: '2vw' }} className='position-absolute end-0 top-0 me-3'>Edit Profile</a>}
+                {!viewingUser && <a href='/edit-profile' style={{ fontSize: '2vw' }} className='position-absolute end-0 top-0 me-3'>Edit Profile</a>}
                 <h2 className='color-fourth text-break mb-0' style={{ fontSize: '9vw' }}>{username}</h2>
-                {!user && <h3 className='color-fourth mb-0' style={{ fontSize: '4vw' }}>{currentUser?.email}</h3>}
+                {!viewingUser && <h3 className='color-fourth mb-0' style={{ fontSize: '4vw' }}>{currentUser?.email}</h3>}
                 <span className='color-fourth mt-2' style={{ fontSize: '2vw' }}>
                     {currentUser?.followers.length} Followers • { }
                     {currentUser?.following.length} Following</span>

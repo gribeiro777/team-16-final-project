@@ -126,7 +126,7 @@ const SearchComponent = ({query}) => {
                                     <Link to={`/profile/${user._id}`} style={{ color: 'black', textDecoration: 'none'}}>
                                     <div className='row pe-2'>
                                             <div className='col-2'>
-                                                <img src="idk.com" height="48px" width="48px"/>
+                                                <img src={`https://picsum.photos/seed/${user.username}/600`} height="48px" width="48px"/>
                                             </div>
                                             <div className='col-10'>
                                             {user.username}

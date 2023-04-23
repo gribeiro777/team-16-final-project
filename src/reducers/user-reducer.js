@@ -1,10 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {findUsersThunk, createUserThunk, followUserThunk, getUserFollowingThunk, unfollowUserThunk}
+import {findUsersThunk, findUsersByUsernameThunk, followUserThunk, getUserFollowingThunk, unfollowUserThunk, getUserByUsernameThunk, getUserFollowersThunk}
     from "../thunks/user-thunks";
 
 const initialState = {
     users: [],
     loading: false,
+    postUsers: {},
+    loadingPostUsers: false,
+    viewingUser: null,
+    viewingUserFollowing: [],
+    viewingUserFollowers: [],
 }
 
 const userSlice = createSlice({
@@ -26,6 +31,30 @@ const userSlice = createSlice({
                 state.loading = false
                 state.error = action.error
             },
+        [findUsersByUsernameThunk.pending]:
+            (state) => {
+                state.loadingPostUsers = true
+                state.postUsers = {}
+            },
+        [findUsersByUsernameThunk.fulfilled]:
+            (state, { payload }) => {
+                state.loadingPostUsers = false
+                state.postUsers = payload
+            },
+        [findUsersByUsernameThunk.rejected]:
+            (state, action) => {
+                state.loadingPostUsers = false
+                state.error = action.error
+            },
+        [getUserByUsernameThunk.pending]:
+            (state) => {
+                state.loading = true
+            },
+        [getUserByUsernameThunk.fulfilled]:
+            (state, { payload }) => {
+                state.loading = false
+                state.viewingUser = payload
+            },
         [followUserThunk.pending]:
             (state) => {
                 state.loading = true
@@ -45,10 +74,22 @@ const userSlice = createSlice({
         [getUserFollowingThunk.pending]:
             (state) => {
                 state.loading = true
+                state.viewingUserFollowing = []
             },
         [getUserFollowingThunk.fulfilled]:
             (state, { payload }) => {
                 state.loading = false
+                state.viewingUserFollowing = payload
+            },
+        [getUserFollowersThunk.pending]:
+            (state) => {
+                state.loading = true
+                state.viewingUserFollowers = []
+            },
+        [getUserFollowersThunk.fulfilled]:
+            (state, { payload }) => {
+                state.loading = false
+                state.viewingUserFollowers = payload
             },
     },
     reducers: {}

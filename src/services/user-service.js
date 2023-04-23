@@ -12,23 +12,47 @@ export const findUsers = async () => {
     return users
 }
 
-export const followUser = async (uid) => {
-    const response = await api.put(`${DB_URL}/follow-user/${uid}`);
+export const findUsersByUsername = async (usernames) => {
+    const users = await Promise.all(usernames.map(async username => {
+        const response = await axios.get(`${DB_URL}/get-user/${username}`)
+        return response.data
+    }))
+    const userIdToUser = {}
+    return users.map(user => userIdToUser[user.username] = user)
+}
+
+export const getUserByUsername = async (username) => {
+    const response = await api.get(`${DB_URL}/get-user/${username}`);
     const user = response.data;
 
     return user
 }
 
-export const unfollowUser = async (uid) => {
-    const response = await api.put(`${DB_URL}/unfollow-user/${uid}`);
+export const followUser = async (username) => {
+    const response = await api.put(`${DB_URL}/follow-user/${username}`);
     const user = response.data;
 
     return user
 }
 
-export const getUserFollowing = async (uid) => {
-    const response = await api.get(`${DB_URL}/get-user-following/${uid}`);
+export const unfollowUser = async (username) => {
+    const response = await api.put(`${DB_URL}/unfollow-user/${username}`);
+    const user = response.data;
+
+    return user
+}
+
+export const getUserFollowing = async (username) => {
+    console.log('username', username)
+    const response = await api.get(`${DB_URL}/get-user-following/${username}`);
     const following = response.data;
 
     return following
+}
+
+export const getUserFollowers = async (username) => {
+    const response = await api.get(`${DB_URL}/get-user-followers/${username}`);
+    const followers = response.data;
+
+    return followers
 }

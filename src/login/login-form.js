@@ -1,16 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import { useDispatch, useSelector } from "react-redux";
-import { loginThunk } from "../thunks/auth-thunks";
+import { getCurrentUserThunk, loginThunk } from "../thunks/auth-thunks";
 
 const LoginForm = () => {
+    const { currentUser } = useSelector(state => state.authData);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const {loading} = useSelector(state => state.authData);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    useEffect(() => {
+      dispatch(getCurrentUserThunk());
+    }, []);
 
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
@@ -30,6 +35,10 @@ const LoginForm = () => {
             alert('Incorrect username or password. Please try again.');
         }
     };
+
+    if (currentUser) {
+        navigate('/profile');
+    }
 
   return (
     <div className="registers-page d-flex justify-content-center align-items-center vh-100 bg-light">

@@ -87,7 +87,7 @@ const SearchBar = ({noOptions}) => {
         searchedUsers.slice(0,3).map(user => {
         return ({
             label: <Link to={`/profile/${user.username}`} style={{ color: 'black', textDecoration: 'none'}}>
-                <div><img className="rounded-4" src="idk.com" height="36px" width="36px"/> {user.username} (user)</div>
+                <div><img className="rounded-4" src={`https://picsum.photos/seed/${user.username}/600`} height="36px" width="36px"/> {user.username} (user)</div>
             </Link>,
             value: JSON.stringify({type: 'user', value: user})
         })

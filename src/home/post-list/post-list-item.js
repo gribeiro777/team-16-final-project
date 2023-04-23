@@ -65,7 +65,13 @@ const PostItem = (
                     <div className='text-break'>{post.review}</div>
                 </div>
             </div>
-            {/* <div className='btn btn-danger position-absolute end-0 bottom-0 mb-1 me-3 p-1' style={{ fontSize: '12px' }}>Remove</div> */}
+            <div className='row'>
+                <div className='col-3'></div>
+                <div className='col-9'>
+                    <i className="bi bi-heart me-1"></i>
+                    <span className="text-muted">{post.likes}</span>
+                </div>
+            </div>
             {(myProfile || isAdmin) && <u className='position-absolute end-0 bottom-0 me-3 p-1 text-danger' role='button' onClick={deletePost}>Delete</u>}
             <div className="row"></div>
         </li>

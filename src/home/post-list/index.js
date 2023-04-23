@@ -11,12 +11,11 @@ const PostsList = ({user}) => {
         dispatch(findPostsThunk(user ? user.username : null))
     }, [user])
 
-    return <div className="text-white">
+    return <div className="text-off-black">
         <ul className="list-group rounded-0">
             {
                 posts.map(post => 
-                    <PostItem
-                        key={post._id} post={post}/>)
+                    <PostItem key={post._id} post={post}/>)
             }
         </ul>
     </div>

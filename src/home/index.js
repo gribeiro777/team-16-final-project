@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import 'bootstrap/dist/css/bootstrap.css';
 import SearchBar from "./searchbar";
 import PostsList from "./post-list";
+import '../index.css'
 import './style/index.css'
 import {Provider} from "react-redux";
 import {configureStore} from "@reduxjs/toolkit";
@@ -36,12 +37,12 @@ function Home({explore}) {
     const PostNav = ({exploreActive}) => {
         return (
             <div className="pt-xl-5">
-                <ul class="nav nav-tabs nav-fill">
-                    <li class={`nav-item ${!exploreActive ? 'bg-second' : ''} rounded-top`}>
-                        <Link to={"/"} class={`nav-link ${exploreActive ? 'text-light' : 'text-dark'}`} href="#">People you follow</Link>
+                <ul class="nav nav-tabs nav-fill accent-border">
+                    <li class={`nav-item ${!exploreActive ? 'secondary-color' : '' } rounded-top`}>
+                        <Link to={"/"} class={`nav-link ${exploreActive ? 'text-dark' : 'text-light'}`} href="#">People you follow</Link>
                     </li>
-                    <li class={`nav-item ${exploreActive ? 'bg-second' : ''} rounded-top`}>
-                        <Link to={"/explore"} class={`nav-link ${!exploreActive ? 'text-light' : 'text-dark'}`} href="#">Explore</Link>
+                    <li class={`nav-item ${exploreActive ? 'secondary-color' : ''} rounded-top`}>
+                        <Link to={"/explore"} class={`nav-link ${!exploreActive ? 'text-dark' : 'text-light'}`} href="#">Explore</Link>
                     </li>
                 </ul>
             </div>
@@ -50,16 +51,17 @@ function Home({explore}) {
 
     return(
         <Provider store={store}>
-        <div className="body">
+        <div className="secondary-color">
             <div className="row">
                 <div className="col-2 secondary-color ps-lg-5">
                 </div>
                 <div className="col-8 card main-card main-color">
-                    <div className="row search-bar sticky-top">
+                    <div className="row search-bar card pt-2 main-color border-0 sticky-top">
                         <SearchBar></SearchBar>
                     </div>
                     <PostNav exploreActive={explore}/>
-                    <div className='row pt-5'>
+                    <div className='row min-vh-100 pt-3'>
+                        <h2 className="pb-2">Latest reviews</h2>
                         <PostsList user={explore ? null : postListUser}></PostsList>
                     </div>
                 </div>

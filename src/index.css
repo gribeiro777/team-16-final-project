@@ -5,11 +5,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #22313f;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  monospace;
 }
 
 .global-font {
@@ -33,12 +34,28 @@ code {
   color: #142d4c;
 }
 
+.main-color {
+  background: #719192;
+}
+
+.secondary-color {
+  background: #22313f;
+}
+
+.accent-color {
+  background: #dfcdc3;
+}
+
+.accent-border {
+  border-color: #dfcdc3
+}
+
 .bg-first {
 	background: #ececec;
 }
 
 .bg-second {
-	background: #9fd3c7;
+	background: #dbd8e3;
 }
 
 .bg-third {
@@ -47,4 +64,8 @@ code {
 
 .bg-fourth {
 	background: #142d4c;
+}
+
+.text-off-black {
+  color: #212427
 }

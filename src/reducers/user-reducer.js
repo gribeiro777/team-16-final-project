@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import {findUsersThunk, createUserThunk, followUserThunk, getUserFollowingThunk, unfollowUserThunk}
     from "../thunks/user-thunks";
 
-
 const initialState = {
     users: [],
     loading: false,
@@ -55,4 +54,3 @@ const userSlice = createSlice({
     reducers: {}
 });
 export default userSlice.reducer;
-

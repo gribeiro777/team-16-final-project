@@ -4,6 +4,7 @@ import {getTrackThunk} from "../thunks/spotify-thunks";
 import { ReviewForm } from "./review-form";
 
 const TrackInfo = (props) => {
+    const { currentUser } = useSelector((state) => state.authData);
     const {currentTrack} = useSelector(state => state.spotifyData)
     const dispatch = useDispatch();
     useEffect(() => {
@@ -32,11 +33,12 @@ const TrackInfo = (props) => {
             
             <hr className='color-first'></hr>
 
-            <div className='row'>
+            {currentUser && <div className='row'>
                 <div className='col-3'>
                     <h4 className='color-first'>Followers Ratings</h4> 
                     
                 </div>
+                
                 <div className='col-9'>
                     <ReviewForm currentTrack={currentTrack}/>
                 
@@ -45,7 +47,12 @@ const TrackInfo = (props) => {
                     <li className='list-group-item'></li>
                 </ul>
                 </div>
-            </div>
+            </div>}
+
+            {!currentUser && <ul className='list-group px-5 mx-4'>
+                <li className='list-group-item'></li>
+                <li className='list-group-item'></li>
+            </ul>}
         </div>
         : 'invalid song id'}
     </div>

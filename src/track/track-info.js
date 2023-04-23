@@ -52,13 +52,13 @@ const TrackInfo = ({tid, explore}) => {
             
             <hr className='color-first'></hr>
 
-            {currentUser && <div className='row'>
-                
-            <div>
+            {currentUser && 
+            <div className='row'>  
+                <div>
                     <ReviewForm currentTrack={currentTrack}/>
                     <PostNav exploreActive={explore} tid={tid}/>
                     {!explore && <PostsList userFollowingPosts={currentUser} trackId={tid}/>}
-                    {explore && <PostsList trackId={tid}/>}
+                    {explore && <PostsList trackId={tid} myProfile={true}/>}
                 </div>
             </div>}
 

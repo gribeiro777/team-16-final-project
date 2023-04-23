@@ -1,6 +1,8 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import '../style/index.css'
+import { useDispatch } from "react-redux";
+import { deletePostThunk } from "../../thunks/post-thunks";
 
 const PostItem = (
     {
@@ -16,7 +18,8 @@ const PostItem = (
             spotifyURI: 'spotify.com/tracks/123',
             spotifyID: 'efg',
             likes: 10,
-        }
+        },
+        myProfile = false
     }
 ) => {
     const starIcons = []
@@ -28,20 +31,25 @@ const PostItem = (
         starIcons.push(<bi className="bi bi-star"></bi>)
     }
 
+    const dispatch = useDispatch()
+    const deletePost = () => {
+        dispatch(deletePostThunk(post._id))
+    }
+
     return(
         <li className="list-group-item main-color text-off-black border-start-0 border-end-0 accent-border border-3 pt-3 pb-3 position-relative">
             <div className="row">
                 <div className="col-3">
-                <Link className="text-decoration-none" to={`/tracks/${post.spotifyID}`}>
-                    <div className="row">
-                        <div className="col-auto d-flex flex-wrap align-items-center">
-                                <img className="rounded-4 " height={64} src={post.albumArt}/>
+                    <Link className="text-decoration-none" to={`/tracks/${post.spotifyID}`}>
+                        <div className="row">
+                            <div className="col-auto d-flex flex-wrap align-items-center">
+                                    <img className="rounded-4 " height={64} src={post.albumArt}/>
+                            </div>
+                            <div className="col">
+                                <div className="row text-off-black">{post.songTitle}</div>
+                                <div className="row time">{post.artists.map(artist => artist.name).join(', ')}</div>
+                            </div>
                         </div>
-                        <div className="col">
-                            <div className="row text-off-black">{post.songTitle}</div>
-                            <div className="row time">{post.artists.map(artist => artist.name).join(', ')}</div>
-                        </div>
-                    </div>
                     </Link>
                 </div>
                 <div className="col-9">
@@ -55,10 +63,9 @@ const PostItem = (
                     </div>
                     <div className='text-break'>{post.review}</div>
                 </div>
-                <div className="col-2">
-
-                </div>
             </div>
+            {/* <div className='btn btn-danger position-absolute end-0 bottom-0 mb-1 me-3 p-1' style={{ fontSize: '12px' }}>Remove</div> */}
+            {myProfile && <u className='position-absolute end-0 bottom-0 me-3 p-1 text-danger' role='button' onClick={deletePost}>Delete</u>}
             <div className="row"></div>
         </li>
     );

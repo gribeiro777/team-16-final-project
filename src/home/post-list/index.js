@@ -4,7 +4,7 @@ import PostItem
     from "./post-list-item";
 import {findPostsThunk, findUserPostsThunk, getPostByTrackIDThunk, getPostsFromFollowingTrackIdThunk} from "../../thunks/post-thunks";
 
-const PostsList = ({userPosts, userFollowingPosts, trackId}) => {
+const PostsList = ({userPosts, userFollowingPosts, trackId, myProfile = false}) => {
     const {posts} = useSelector(state => state.postData)
     const dispatch = useDispatch();
     useEffect(() => {
@@ -23,7 +23,7 @@ const PostsList = ({userPosts, userFollowingPosts, trackId}) => {
         <ul className="list-group rounded-0">
             {
                 posts.map(post => 
-                    <PostItem key={post._id} post={post}/>)
+                    <PostItem key={post._id} post={post} myProfile={myProfile}/>)
             }
         </ul>
     </div>

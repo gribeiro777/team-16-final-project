@@ -18,6 +18,11 @@ export const createPostThunk = createAsyncThunk(
         await service.createPost(post)
 )
 
+export const deletePostThunk = createAsyncThunk(
+    'posts/deletePost', async (postID) =>
+        await service.deletePost(postID)
+)
+
 export const getPostByTrackIDThunk = createAsyncThunk(
     'posts/getPostByTrackID', async (trackID) =>
         await service.getPostByTrackID(trackID)

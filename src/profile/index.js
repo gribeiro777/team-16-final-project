@@ -8,7 +8,7 @@ import authReducer from '../reducers/auth-reducer';
 import ProfileInfo from './profile-info';
 import ProfilePosts from './profile-posts';
 import ProfileFollows from './profile-follows';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { getUserByUsernameThunk } from '../thunks/user-thunks';
 import SmallProfile from './small-profile';
 
@@ -29,6 +29,11 @@ function Profile({likedReviews}) {
     let user = undefined;
     if (username && username !== currentUser?.username) {
         user = viewingUser;
+    }
+
+    const navigate = useNavigate();
+    if (!currentUser) {
+        navigate('/login')
     }
 
     return(

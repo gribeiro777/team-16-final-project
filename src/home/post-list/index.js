@@ -2,18 +2,21 @@ import React, {useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import PostItem
     from "./post-list-item";
-import {findPostsThunk, getPostByTrackIDThunk} from "../../thunks/post-thunks";
+import {findPostsThunk, findUserPostsThunk, getPostByTrackIDThunk} from "../../thunks/post-thunks";
 
-const PostsList = ({user, trackId}) => {
+const PostsList = ({userPosts, userFollowingPosts, trackId}) => {
     const {posts} = useSelector(state => state.postData)
     const dispatch = useDispatch();
+    console.log('userPosts', userPosts)
     useEffect(() => {
         if (trackId) {
             dispatch(getPostByTrackIDThunk(trackId))
+        } else if (userPosts) {
+            dispatch(findUserPostsThunk(userPosts.username))
         } else {
-            dispatch(findPostsThunk(user ? user.username : null))
+            dispatch(findPostsThunk(userFollowingPosts ? userFollowingPosts.username : null))
         }
-    }, [user])
+    }, [userFollowingPosts])
 
     return <div className="text-off-black">
         <ul className="list-group rounded-0">

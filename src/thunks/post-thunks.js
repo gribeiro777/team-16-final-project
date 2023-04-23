@@ -8,6 +8,11 @@ export const findPostsThunk = createAsyncThunk(
         await service.findPosts(uid)
 )
 
+export const findUserPostsThunk = createAsyncThunk(
+    'posts/getUserPosts', async (uid) =>
+        await service.findUserPosts(uid)
+)
+
 export const createPostThunk = createAsyncThunk(
     'posts/createPost', async (post) =>
         await service.createPost(post)

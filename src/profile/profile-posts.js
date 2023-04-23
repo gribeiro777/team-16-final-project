@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PostsList from "../home/post-list";
 
-const MyReviews = ({myReviewsLink, likedReviewsLink}) => {
+const MyReviews = ({user, myReviewsLink, likedReviewsLink}) => {
     return (
         <div>
             <ul class="nav nav-tabs nav-fill mb-3">
@@ -14,12 +14,12 @@ const MyReviews = ({myReviewsLink, likedReviewsLink}) => {
                 </li>
             </ul>
         
-            <PostsList/>
+            <PostsList userPosts={user}/>
         </div>
     );
 }
 
-const LikedReviews = ({myReviewsLink, likedReviewsLink}) => {
+const LikedReviews = ({user, myReviewsLink, likedReviewsLink}) => {
     return (
         <div>
             <ul class="nav nav-tabs nav-fill mb-3">
@@ -30,22 +30,27 @@ const LikedReviews = ({myReviewsLink, likedReviewsLink}) => {
                     <Link to={likedReviewsLink} class="nav-link text-dark" href="#">Liked Reviews</Link>
                 </li>
             </ul>
+
+            <PostsList userPosts={user}/>
         </div>
     );
 }
 
 
-export default function ProfilePosts({likedReviews, viewingUser}) {
+export default function ProfilePosts({currentUser, viewingUser, likedReviews}) {
     let myReviewsLink = '/profile';
     let likedReviewsLink = '/profile/liked-reviews';
+    let user = currentUser;
     if (viewingUser) {
         myReviewsLink = `/profile/${viewingUser.username}`
         likedReviewsLink = `/profile/${viewingUser.username}/liked-reviews`
+        user = viewingUser;
     }
     
+    console.log(user)
     if (!likedReviews) {
-        return <MyReviews myReviewsLink={myReviewsLink} likedReviewsLink={likedReviewsLink}/>
+        return <MyReviews user={user} myReviewsLink={myReviewsLink} likedReviewsLink={likedReviewsLink}/>
     } else {
-        return <LikedReviews myReviewsLink={myReviewsLink} likedReviewsLink={likedReviewsLink}/>
+        return <LikedReviews user={user} myReviewsLink={myReviewsLink} likedReviewsLink={likedReviewsLink}/>
     }
 }

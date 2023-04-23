@@ -13,7 +13,7 @@ import { getUserByUsernameThunk } from '../thunks/user-thunks';
 import SmallProfile from './small-profile';
 
 function Profile({likedReviews}) {
-    const { currentUser } = useSelector((state) => state.authData);
+    const { loading, currentUser } = useSelector((state) => state.authData);
     const dispatch = useDispatch();
     const { viewingUser } = useSelector((state) => state.userData);
     const { username } = useParams();
@@ -32,9 +32,10 @@ function Profile({likedReviews}) {
     }
 
     const navigate = useNavigate();
-    if (!currentUser) {
+    if (!currentUser && !loading) {
         navigate('/login')
     }
+    
 
     return(
         <div className="container">
@@ -48,7 +49,7 @@ function Profile({likedReviews}) {
                 </div>
 
                 <div className='col-12 col-md-10 ps-4'>
-                    <ProfilePosts likedReviews={likedReviews} viewingUser={user}></ProfilePosts>
+                    <ProfilePosts viewingUser={user} currentUser={currentUser} likedReviews={likedReviews}></ProfilePosts>
                 </div>
             </div>
         </div>

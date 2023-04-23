@@ -12,6 +12,13 @@ export const findPosts = async (username) => {
     return posts
 }
 
+export const findUserPosts = async (username) => {
+    const response = await axios.get(`${DB_URL}/get-user-posts/${username}`)
+    const posts = response.data;
+
+    return posts
+}
+
 export const createPost = async (post) => {
     const response = await api.post(`${DB_URL}/create-post`, post)
     return response.data

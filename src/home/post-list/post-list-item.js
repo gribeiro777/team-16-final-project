@@ -19,8 +19,17 @@ const PostItem = (
         }
     }
 ) => {
+    const starIcons = []
+    for (let i = 0; i < post.rating; i++) {
+        starIcons.push(<bi className="bi bi-star-fill"></bi>)
+    }
+    
+    for (let i = post.rating; i < 5; i++) {
+        starIcons.push(<bi className="bi bi-star"></bi>)
+    }
+
     return(
-        <li className="list-group-item main-color text-off-black border-start-0 border-end-0 accent-border border-3 pt-3 pb-3">
+        <li className="list-group-item main-color text-off-black border-start-0 border-end-0 accent-border border-3 pt-3 pb-3 position-relative">
             <div className="row">
                 <div className="col-3">
                 <Link className="text-decoration-none" to={`/tracks/${post.spotifyID}`}>
@@ -36,12 +45,15 @@ const PostItem = (
                     </Link>
                 </div>
                 <div className="col-9">
+                    <div className='position-absolute end-0 me-3'>
+                        {starIcons.map((icon) => icon)}
+                    </div>
                     <div><b>
                         <Link to={`/profile/${post.username}`} style={{textDecoration: 'none'}}>
                             <span className="username text-off-black">{post.username}</span>
                         </Link></b> <span>&#183;</span> <span className="time">{post.time}</span>
                     </div>
-                    <div>{post.review}</div>
+                    <div className='text-break'>{post.review}</div>
                 </div>
                 <div className="col-2">
 

@@ -2,13 +2,17 @@ import React, {useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import PostItem
     from "./post-list-item";
-import {findPostsThunk} from "../../thunks/post-thunks";
+import {findPostsThunk, getPostByTrackIDThunk} from "../../thunks/post-thunks";
 
-const PostsList = ({user}) => {
+const PostsList = ({user, trackId}) => {
     const {posts} = useSelector(state => state.postData)
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(findPostsThunk(user ? user.username : null))
+        if (trackId) {
+            dispatch(getPostByTrackIDThunk(trackId))
+        } else {
+            dispatch(findPostsThunk(user ? user.username : null))
+        }
     }, [user])
 
     return <div className="text-off-black">

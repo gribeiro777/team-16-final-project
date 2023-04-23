@@ -2,6 +2,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {getTrackThunk} from "../thunks/spotify-thunks";
 import { ReviewForm } from "./review-form";
+import { getPostByTrackIDThunk } from "../thunks/post-thunks";
+import PostsList from "../home/post-list";
 
 const TrackInfo = (props) => {
     const { currentUser } = useSelector((state) => state.authData);
@@ -42,17 +44,11 @@ const TrackInfo = (props) => {
                 <div className='col-9'>
                     <ReviewForm currentTrack={currentTrack}/>
                 
-                <ul className='list-group px-5 mx-4'>
-                    <li className='list-group-item'></li>
-                    <li className='list-group-item'></li>
-                </ul>
+                    <PostsList trackId={props.tid}/>
                 </div>
             </div>}
 
-            {!currentUser && <ul className='list-group px-5 mx-4'>
-                <li className='list-group-item'></li>
-                <li className='list-group-item'></li>
-            </ul>}
+            {!currentUser && <PostsList trackId={props.tid}/>}
         </div>
         : 'invalid song id'}
     </div>

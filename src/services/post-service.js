@@ -16,3 +16,8 @@ export const createPost = async (post) => {
     const response = await api.post(`${DB_URL}/create-post`, post)
     return response.data
 }
+
+export const getPostByTrackID = async (trackID) => {
+    const response = await api.get(`${DB_URL}/get-post-by-track-id/${trackID}`)
+    return response.data
+}

@@ -3,11 +3,14 @@ import {useDispatch, useSelector} from "react-redux";
 import PostItem
     from "./post-list-item";
 import {findPostsThunk, findUserPostsThunk, getPostByTrackIDThunk, getPostsFromFollowingTrackIdThunk} from "../../thunks/post-thunks";
+import { getCurrentUserThunk } from "../../thunks/auth-thunks";
 
 const PostsList = ({userPosts, userFollowingPosts, trackId, myProfile = false}) => {
     const {posts} = useSelector(state => state.postData)
+    const {currentUser} = useSelector(state => state.authData)
     const dispatch = useDispatch();
     useEffect(() => {
+        dispatch(getCurrentUserThunk());
         if (trackId && userFollowingPosts) {
             dispatch(getPostsFromFollowingTrackIdThunk(trackId));
         } else if (trackId) {
@@ -23,7 +26,7 @@ const PostsList = ({userPosts, userFollowingPosts, trackId, myProfile = false}) 
         <ul className="list-group rounded-0">
             {
                 posts.map(post => 
-                    <PostItem key={post._id} post={post} myProfile={myProfile}/>)
+                    <PostItem key={post._id} post={post} myProfile={myProfile} isAdmin={currentUser?.isAdmin}/>)
             }
         </ul>
     </div>

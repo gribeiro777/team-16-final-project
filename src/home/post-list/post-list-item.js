@@ -19,7 +19,8 @@ const PostItem = (
             spotifyID: 'efg',
             likes: 10,
         },
-        myProfile = false
+        myProfile = false,
+        isAdmin = false,
     }
 ) => {
     const starIcons = []
@@ -65,7 +66,7 @@ const PostItem = (
                 </div>
             </div>
             {/* <div className='btn btn-danger position-absolute end-0 bottom-0 mb-1 me-3 p-1' style={{ fontSize: '12px' }}>Remove</div> */}
-            {myProfile && <u className='position-absolute end-0 bottom-0 me-3 p-1 text-danger' role='button' onClick={deletePost}>Delete</u>}
+            {(myProfile || isAdmin) && <u className='position-absolute end-0 bottom-0 me-3 p-1 text-danger' role='button' onClick={deletePost}>Delete</u>}
             <div className="row"></div>
         </li>
     );

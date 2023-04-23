@@ -57,9 +57,12 @@ const ProfileInfo = ({viewingUser, currentUser, smallView}) => {
                 </div>     
                 <h2 className='color-dark-blue text-break' style={{ fontSize: '1.8vw' }}>{username}</h2>
                 {!viewingUser && <h3 className='color-dark-blue my-2' style={{ fontSize: '1.2vw' }}>{currentUser?.email}</h3>}
-                
+                {!viewingUser && currentUser?.isAdmin && <h3 className='color-dark-blue my-2' style={{ fontSize: '1.2vw' }}>—Admin—</h3>}
+
+
                 <Link to={followersLink} className='d-block color-fourth mt-2 text-decoration-none' style={{ fontSize: '1vw' }}>{followersLength} Followers</Link>
                 <Link to={followingLink} className='d-block color-fourth text-decoration-none' style={{ fontSize: '1vw' }}>{followingLength} Following</Link>
+
                 
                 {viewingUser && !following && 
                     <button className='btn btn-primary mt-3' style={{ fontSize: '1.2vw' }} onClick={followUser}>Follow</button>

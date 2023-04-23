@@ -12,7 +12,7 @@ import "./style/index.css"
 
 library.add(faSpotify)
 
-const SearchBar = () => {
+const SearchBar = ({noOptions}) => {
 
     const navigate = useNavigate();
 
@@ -52,6 +52,9 @@ const SearchBar = () => {
                 break
             case 'search':
                 navigate(`/search/${selected.value}`)
+                break
+            default:
+                 navigate("/")
         }
     };
 
@@ -84,7 +87,7 @@ const SearchBar = () => {
         searchedUsers.slice(0,3).map(user => {
         return ({
             label: <Link to={`/profile/${user._id}`} style={{ color: 'black', textDecoration: 'none'}}>
-                <div>user: <span color={'blue'}>{user.username}</span></div>
+                <div><img className="rounded-4" src="idk.com" height="36px" width="36px"/> {user.username} (user)</div>
             </Link>,
             value: JSON.stringify({type: 'user', value: user})
         })
@@ -101,9 +104,9 @@ const SearchBar = () => {
         })
     }) : []
 
-    return <div>
+    return <div className='z-index-0'>
         <div>
-        <Select
+        <Select className='z-index-2'
             styles={{
                 control: (baseStyles, state) => ({
                     ...baseStyles,

@@ -20,7 +20,7 @@ const PostItem = (
     }
 ) => {
     return(
-        <li className="list-group-item main-color text-off-black border-start-0 border-end-0 accent-border border-sm-3 pt-3 pb-3">
+        <li className="list-group-item main-color text-off-black border-start-0 border-end-0 accent-border border-3 pt-3 pb-3">
             <div className="row">
                 <div className="col-3">
                 <Link className="text-decoration-none" to={`/tracks/${post.spotifyID}`}>

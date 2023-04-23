@@ -69,3 +69,11 @@ code {
 .text-off-black {
   color: #212427
 }
+
+.secondary-color-border {
+  border-color: #22313f !important;
+}
+
+.secondary-color-text {
+  color: #22313f;
+}

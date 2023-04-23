@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import { findUsersThunk, getUserByUsernameThunk, getUserFollowersThunk, getUserFollowingThunk } from "../thunks/user-thunks";
 import { getCurrentUserThunk } from "../thunks/auth-thunks";
 import { UserListItem } from "./user-list-item";
+import { Link } from "react-router-dom";
 
 const FollowsPage = ({followers}) => {
     const { currentUser } = useSelector((state) => state.authData);
@@ -25,9 +26,15 @@ const FollowsPage = ({followers}) => {
         }
     }, [currentUser?.username, dispatch, username])
 
+    let profileLink = '/profile'
+    if (username) {
+        profileLink = `/profile/${username}`
+    }
+
     return (
-        <div>
-            <div className='d-flex justify-content-center mt-2'>
+        <div className='p-2 position-relative'>
+            <Link to={profileLink}><i class="bi bi-arrow-left fa-2x ms-3 position-absolute text-dark" role='button'></i></Link>
+            <div className='d-flex justify-content-center mt-4'>
                 {followers && <h1 className='color-first'>{currentUsername}'s Followers</h1>}
                 {!followers && <h1 className='color-first'>{currentUsername}'s Following</h1>}
             </div>

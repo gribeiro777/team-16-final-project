@@ -50,7 +50,6 @@ export default function ProfilePosts({currentUser, viewingUser, likedReviews}) {
         myProfile = false;
     }
     
-    console.log(user)
     if (!likedReviews) {
         return <MyReviews user={user} myReviewsLink={myReviewsLink} likedReviewsLink={likedReviewsLink} myProfile={myProfile}/>
     } else {

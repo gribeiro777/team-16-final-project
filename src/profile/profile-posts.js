@@ -1,5 +1,4 @@
 import React from "react";
-import './style/profile-posts.css';
 import { Link } from "react-router-dom";
 import PostsList from "../home/post-list";
 

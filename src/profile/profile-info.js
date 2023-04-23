@@ -25,7 +25,6 @@ const ProfileInfo = ({viewingUser, currentUser, smallView}) => {
     }
 
     useEffect(() => {
-        console.log(currentUser?.following)
         if (currentUser?.following?.includes(viewingUser?.username)) {
             setFollowing(true);
         } else {

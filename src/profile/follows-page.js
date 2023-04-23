@@ -11,6 +11,7 @@ const FollowsPage = ({followers}) => {
     const { viewingUserFollowing } = useSelector((state) => state.userData);
     const { viewingUserFollowers } = useSelector((state) => state.userData);
     const { username } = useParams();
+    const currentUsername = username ? username : currentUser?.username;
 
     useEffect(() => {
         dispatch(getCurrentUserThunk());
@@ -18,23 +19,18 @@ const FollowsPage = ({followers}) => {
 
     useEffect(() => {
         if (followers) {
-            if (username) {
-                dispatch(getUserFollowersThunk(username))
-            } else {
-                dispatch(getUserFollowersThunk(currentUser?.username))
-            }
+            dispatch(getUserFollowersThunk(currentUsername))
         } else {
-            if (username) {
-                dispatch(getUserFollowingThunk(username))
-            } else {
-                dispatch(getUserFollowingThunk(currentUser?.username))
-            }
+            dispatch(getUserFollowingThunk(currentUsername))
         }
     }, [currentUser?.username, dispatch, username])
 
     return (
         <div>
-            <h1>Follows Page</h1>
+            <div className='d-flex justify-content-center mt-2'>
+                {followers && <h1 className='color-first'>{currentUsername}'s Followers</h1>}
+                {!followers && <h1 className='color-first'>{currentUsername}'s Following</h1>}
+            </div>
             <div className='d-flex justify-content-center'>
                 <div className='row justify-content-center'>
                     {followers && viewingUserFollowers.map((followerUser) => UserListItem({user: followerUser}))}

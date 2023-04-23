@@ -32,7 +32,7 @@ function Profile({likedReviews}) {
     }
 
     const navigate = useNavigate();
-    if (!currentUser && !loading) {
+    if (!currentUser && !username && !loading) {
         navigate('/login')
     }
     

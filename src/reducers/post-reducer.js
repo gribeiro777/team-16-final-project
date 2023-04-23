@@ -1,11 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {createPostThunk, findPostsThunk, findUserPostsThunk, getPostByTrackIDThunk}
+import {createPostThunk, findPostsThunk, findUserPostsThunk, getPostByTrackIDThunk, getPostsFromFollowingTrackIdThunk}
     from "../thunks/post-thunks";
 
 
 const initialState = {
     posts: [],
-    currentTrackPosts: [],
 }
 
 const postSlice = createSlice({
@@ -37,6 +36,10 @@ const postSlice = createSlice({
                 state.posts.unshift(payload)
             },
         [getPostByTrackIDThunk.fulfilled]:
+            (state, { payload }) => {
+                state.posts = payload
+            },
+        [getPostsFromFollowingTrackIdThunk.fulfilled]:
             (state, { payload }) => {
                 state.posts = payload
             },

@@ -2,14 +2,15 @@ import React, {useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import PostItem
     from "./post-list-item";
-import {findPostsThunk, findUserPostsThunk, getPostByTrackIDThunk} from "../../thunks/post-thunks";
+import {findPostsThunk, findUserPostsThunk, getPostByTrackIDThunk, getPostsFromFollowingTrackIdThunk} from "../../thunks/post-thunks";
 
 const PostsList = ({userPosts, userFollowingPosts, trackId}) => {
     const {posts} = useSelector(state => state.postData)
     const dispatch = useDispatch();
-    console.log('userPosts', userPosts)
     useEffect(() => {
-        if (trackId) {
+        if (trackId && userFollowingPosts) {
+            dispatch(getPostsFromFollowingTrackIdThunk(trackId));
+        } else if (trackId) {
             dispatch(getPostByTrackIDThunk(trackId))
         } else if (userPosts) {
             dispatch(findUserPostsThunk(userPosts.username))

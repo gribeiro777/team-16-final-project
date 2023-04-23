@@ -38,7 +38,9 @@ function App() {
             <Route path='/explore'
                    element={<Home explore={true}/>}/>
             <Route path='/tracks/:tid'
-                   element={<Track/>}/>
+                   element={<Track explore={false}/>}/>
+            <Route path='/tracks/:tid/explore'
+                   element={<Track explore={true}/>}/>       
             <Route path='login'
                    element={<Login/>}/>
             <Route path='register'

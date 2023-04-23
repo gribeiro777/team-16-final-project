@@ -22,3 +22,8 @@ export const getPostByTrackIDThunk = createAsyncThunk(
     'posts/getPostByTrackID', async (trackID) =>
         await service.getPostByTrackID(trackID)
 )
+
+export const getPostsFromFollowingTrackIdThunk = createAsyncThunk(
+    'posts/getPostsFromFollowingTrackId', async (trackId) =>
+        await service.getPostsFromFollowingTrackId(trackId)
+)

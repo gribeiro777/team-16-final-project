@@ -18,9 +18,9 @@ export const ReviewForm = ({currentTrack}) => {
     
     const fillStars = (index) => {
         if (index <= rating) {
-            return <i id={index} class="bi bi-star-fill pe-1 color-second" onClick={handleRating}></i>
+            return <i id={index} class="bi bi-star-fill pe-1" onClick={handleRating}></i>
         } else {
-            return <i id={index} class="bi bi-star pe-1 color-second" onClick={handleRating}></i>
+            return <i id={index} class="bi bi-star pe-1" onClick={handleRating}></i>
         }
     }
 
@@ -53,7 +53,7 @@ export const ReviewForm = ({currentTrack}) => {
     return (
         <div className="row">
             <div className="col-auto">
-                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" width={60}
+                <img src={`https://picsum.photos/seed/${currentUser?.username}/600`} width={60}
                     className='rounded-circle' alt='profile'/>
             </div>
             <div className="col-10 bg-white rounded-4 pb-2">

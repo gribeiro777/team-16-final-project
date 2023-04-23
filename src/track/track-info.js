@@ -4,13 +4,30 @@ import {getTrackThunk} from "../thunks/spotify-thunks";
 import { ReviewForm } from "./review-form";
 import { getPostByTrackIDThunk } from "../thunks/post-thunks";
 import PostsList from "../home/post-list";
+import { Link } from "react-router-dom";
 
-const TrackInfo = (props) => {
+
+const PostNav = ({exploreActive, tid}) => {
+    return (
+        <div className="pt-1 mb-2">
+            <ul class="nav nav-tabs nav-fill accent-border">
+                <li class={`nav-item ${!exploreActive ? 'secondary-color' : '' } rounded-top`}>
+                    <Link to={`/tracks/${tid}`} class={`nav-link ${exploreActive ? 'text-dark' : 'text-light'}`} href="#">People you follow</Link>
+                </li>
+                <li class={`nav-item ${exploreActive ? 'secondary-color' : ''} rounded-top`}>
+                    <Link to={`/tracks/${tid}/explore`} class={`nav-link ${!exploreActive ? 'text-dark' : 'text-light'}`} href="#">Explore</Link>
+                </li>
+            </ul>
+        </div>
+    );
+}
+
+const TrackInfo = ({tid, explore}) => {
     const { currentUser } = useSelector((state) => state.authData);
     const {currentTrack} = useSelector(state => state.spotifyData)
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getTrackThunk(props.tid))
+        dispatch(getTrackThunk(tid))
     }, [])
 
     return (
@@ -36,19 +53,21 @@ const TrackInfo = (props) => {
             <hr className='color-first'></hr>
 
             {currentUser && <div className='row'>
-                <div className='col-3'>
-                    <h4 className='color-first'>Followers Ratings</h4> 
-                    
-                </div>
                 
-                <div className='col-9'>
+            <div>
                     <ReviewForm currentTrack={currentTrack}/>
-                
-                    <PostsList trackId={props.tid}/>
+                    <PostNav exploreActive={explore} tid={tid}/>
+                    {!explore && <PostsList userFollowingPosts={currentUser} trackId={tid}/>}
+                    {explore && <PostsList trackId={tid}/>}
                 </div>
             </div>}
 
-            {!currentUser && <PostsList trackId={props.tid}/>}
+            {!currentUser && 
+                <div>   
+                    <h2>Latest Reviews</h2>
+                    <PostsList trackId={tid}/>
+                </div>
+            }
         </div>
         : 'invalid song id'}
     </div>

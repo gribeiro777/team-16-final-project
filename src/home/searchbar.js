@@ -94,7 +94,7 @@ const SearchBar = () => {
         const image_label = <img src={image.url} alt={''} height="36px" width="36px"></img>
         const song_label = `${track.name} - ${track.artists.map(artist => artist.name).join(', ')}`
         return ({
-            label: <Link to={`/tracks/${track.id}`} style={{ color: 'black', textDecoration: 'none'}}>
+            label: <Link to={`/tracks/${track.id}`} style={{ color: 'black', textDecoration: 'none', background: "blue"}}>
                 <div>{image_label} {song_label}</div>
             </Link>,
             value: JSON.stringify({type: 'track', value: track})
@@ -107,8 +107,22 @@ const SearchBar = () => {
             styles={{
                 control: (baseStyles, state) => ({
                     ...baseStyles,
-                    backgroundColor: "white",
+                    backgroundColor: '#f5ebeb',
+                    "&:hover": {
+                        borderColor: "#22313f"
+                    }
                 }),
+                menuList: base => ({
+                    ...base,
+                    padding: 0,
+                    borderRadius: "5px"
+                }),
+                option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+                    return {
+                      ...styles,
+                      backgroundColor: isFocused ? "#dfcdc3" : "#f5ebeb"
+                    };
+                  }
             }}
             options={searchInput ? [moreOptions, ...displayedUsers, ...displayedTracks] : []}
             components={{ NoOptionsMessage, DropdownIndicator: SpotifyDropdown }}

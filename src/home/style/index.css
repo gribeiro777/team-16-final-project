@@ -1,16 +1,3 @@
-body {
-    background-color: #455d7a;
-}
-
-.secondary-color {
-    padding-top: 35px;
-    background: #455d7a;
-}
-
-.main-color {
-    background: #233142;
-}
-
 .search-bar {
     margin-top: 0px;
 }
@@ -30,6 +17,22 @@ body {
 }
 
 .time {
-    color:silver;
+    color:#22313f;
     font-size: 14px;
+}
+
+.main-color {
+    background: #dfcdc3;
+}
+
+.accent-border {
+    border-color: #22313f;
+}
+
+.text-off-black {
+    color: #212427
+  }
+
+.option-background {
+    color: #f5ebeb
 }

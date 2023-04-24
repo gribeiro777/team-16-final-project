@@ -41,12 +41,20 @@ const PostItem = (
     }
 
     const likePost = () => {
+        if (!currentUser) {
+            alert('You must be logged in to like a post');
+            return;
+        }
         dispatch(likePostThunk(post._id))
         setIsLiked(true);
         setNumLikes(numLikes + 1);
     }
 
     const unlikePost = () => {
+        if (!currentUser) {
+            alert('You must be logged in to unlike a post');
+            return;
+        }
         dispatch(unlikePostThunk(post._id))
         setIsLiked(false)
         setNumLikes(numLikes - 1);

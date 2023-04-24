@@ -12,11 +12,7 @@ const LoginForm = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
-    useEffect(() => {
-      dispatch(getCurrentUserThunk());
-    }, []);
-
+    
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
     };
@@ -36,10 +32,13 @@ const LoginForm = () => {
         }
     };
 
+    if (currentUser) {
+        navigate('/profile');
+    }
 
   return (
     <div className="registers-page d-flex justify-content-center align-items-center vh-100">
-      <div className="card p-3 shadow-sm w-40" style={{ width: '20rem' }}>
+      <div className="card p-3 accent-color shadow-sm w-40" style={{ width: '20rem' }}>
         <h2 className="text-center mb-4">Login</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group mb-4">

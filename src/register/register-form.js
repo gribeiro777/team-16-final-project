@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { registerThunk } from "../thunks/auth-thunks";
 
 const RegisterForm = () => {
+    const { currentUser } = useSelector(state => state.authData);
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -67,9 +68,13 @@ const RegisterForm = () => {
         }
     };
 
+    if (currentUser) {
+        navigate('/profile');
+    }
+
   return (
     <div className="registers-page d-flex justify-content-center align-items-center vh-100">
-      <div className="card p-3 shadow-sm w-40" style={{ width: '30rem' }}>
+      <div className="card accent-color p-3 shadow-sm w-40" style={{ width: '30rem' }}>
         <h2 className="text-center mb-4">Register</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group mb-4">

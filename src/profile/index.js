@@ -1,16 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import 'bootstrap/dist/css/bootstrap.css';
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCurrentUserThunk } from "../thunks/auth-thunks";
-import {Provider} from "react-redux";
-import {configureStore} from "@reduxjs/toolkit";
-import authReducer from '../reducers/auth-reducer';
 import ProfileInfo from './profile-info';
 import ProfilePosts from './profile-posts';
-import ProfileFollows from './profile-follows';
 import { useNavigate, useParams } from 'react-router';
 import { getUserByUsernameThunk } from '../thunks/user-thunks';
-import SmallProfile from './small-profile';
 
 function Profile({likedReviews}) {
     const { loading, currentUser } = useSelector((state) => state.authData);
@@ -49,7 +45,7 @@ function Profile({likedReviews}) {
                 </div>
 
                 <div className='col-12 col-md-10 ps-4'>
-                    <ProfilePosts viewingUser={user} currentUser={currentUser} likedReviews={likedReviews}></ProfilePosts>
+                    {!loading && <ProfilePosts viewingUser={user} currentUser={currentUser} likedReviews={likedReviews}></ProfilePosts>}
                 </div>
             </div>
         </div>

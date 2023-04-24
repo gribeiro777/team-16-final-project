@@ -50,6 +50,10 @@ code {
   border-color: #dfcdc3
 }
 
+.off-accent-color {
+  background: #f5ebeb;
+}
+
 .bg-first {
 	background: #ececec;
 }

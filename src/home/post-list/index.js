@@ -1,16 +1,16 @@
-import React, {useEffect, useRef, useState} from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import PostItem
     from "./post-list-item";
 import {findPostsThunk, findUserPostsThunk, getPostByTrackIDThunk, getPostsFromFollowingTrackIdThunk, getUserLikedPostsThunk} from "../../thunks/post-thunks";
-import { getCurrentUserThunk } from "../../thunks/auth-thunks";
 
 const PostsList = ({userPosts, userFollowingPosts, userLikedPosts, trackId, myProfile = false}) => {
     const {posts} = useSelector(state => state.postData)
     const {currentUser} = useSelector(state => state.authData)
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getCurrentUserThunk());
+        // dispatch(getCurrentUserThunk());
         if (trackId && userFollowingPosts) {
             dispatch(getPostsFromFollowingTrackIdThunk(trackId));
         } else if (trackId) {

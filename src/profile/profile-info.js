@@ -88,10 +88,12 @@ const ProfileInfo = ({viewingUser, currentUser, smallView}) => {
                     }
     
                     {!viewingUser && <a href='/edit-profile' style={{ fontSize: '2vw' }} className='position-absolute end-0 top-0 me-3'>Edit Profile</a>}
-                    <h2 className='color-fourth text-break mb-0' style={{ fontSize: '9vw' }}>{username}</h2>
-                    {!viewingUser && <h3 className='color-fourth mb-0' style={{ fontSize: '4vw' }}>{currentUser?.email}</h3>}
+                    {!viewingUser && currentUser?.isAdmin && <h3 className='color-dark-blue my-2' style={{ fontSize: '3.5vw' }}>—Admin—</h3>}
+
+                    <h2 className='color-fourth text-break mb-0' style={{ fontSize: '7.5vw' }}>{username}</h2>
+                    {!viewingUser && <h3 className='color-fourth mb-0' style={{ fontSize: '3.5vw' }}>{currentUser?.email}</h3>}
                     
-                    <span className='color-fourth mt-2'><Link to={followersLink} className='color-fourth mt-2 text-decoration-none' style={{ fontSize: '2vw' }}>{followersLength} Followers</Link> • { }
+                    <span className='color-fourth mt-0'><Link to={followersLink} className='color-fourth mt-2 text-decoration-none' style={{ fontSize: '2vw' }}>{followersLength} Followers</Link> • { }
                     <Link to={followingLink} className='color-fourth text-decoration-none' style={{ fontSize: '2vw' }}>{followingLength} Following</Link></span>
                 </div>
             </div>

@@ -25,15 +25,17 @@ const postSlice = createSlice({
             },
         [findUserPostsThunk.pending]:
             (state) => {
+                state.loading = true;
                 state.posts = []
             },
         [findUserPostsThunk.fulfilled]:
             (state, { payload }) => {
+                state.loading = false;
                 state.posts = payload
             },
         [createPostThunk.fulfilled]:
             (state, { payload }) => {
-                state.posts.unshift(payload)
+                state.posts.push(payload)
             },
         [deletePostThunk.fulfilled]:
             (state, { payload }) => {

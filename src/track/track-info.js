@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {getTrackThunk} from "../thunks/spotify-thunks";
 import { ReviewForm } from "./review-form";
 import { getPostByTrackIDThunk } from "../thunks/post-thunks";
@@ -60,12 +61,11 @@ const TrackInfo = ({tid, explore}) => {
             <div className='row'>  
                 {currentUser && <ReviewForm currentTrack={currentTrack}/>}
                 <div className="card accent-color p-5 mb-4">
-                    {!posts.length ? 
-                    <h2 className="text-off-black">{currentUser ? 'Be the first to review this song' : 'Log in and be the first to review this song!'}</h2> :
+                    {
                     currentUser ? <div> 
                         <PostNav exploreActive={explore} tid={tid}/>
                         <div className='row pt-3'>
-                            <h2 className="pb-2 pt-5">Latest reviews</h2>
+                            {posts.length ? <h2 className="pb-2 pt-3">Latest reviews</h2> : <h2 className="text-off-black pb-2 pt-3">{'No reviews found'}</h2>}
                             {!explore && <PostsList userFollowingPosts={currentUser} trackId={tid}/>}
                             {explore && <PostsList trackId={tid}/>}
                         </div>

@@ -62,11 +62,11 @@ const SearchComponent = ({query}) => {
     };
 
     return <div className="secondary-color">
-            <div className="row" style={{"minHeight": "90vh"}}>
+            <div className="row" style={{"minHeight": "90vh", "max-width": "100vw"}}>
                 <div className="col-2 secondary-color ps-5"></div>
                 <div className="col-8 card main-card main-color mt-5">
                     <div className="row search-bar pt-2 main-color border-0 sticky-top">
-                        <Select className='z-index-2'
+                        <Select
                             styles={{
                                 control: (baseStyles, state) => ({
                                     ...baseStyles,

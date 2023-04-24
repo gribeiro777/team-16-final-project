@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import { useDispatch, useSelector } from "react-redux";
-import { getCurrentUserThunk, loginThunk } from "../thunks/auth-thunks";
+import { loginThunk } from "../thunks/auth-thunks";
 
 const LoginForm = () => {
     const { currentUser } = useSelector(state => state.authData);
@@ -27,7 +27,7 @@ const LoginForm = () => {
         const credentials = {username: username, password: password}
         try {
             await dispatch(loginThunk(credentials)).unwrap();
-            navigate('/profile');
+            navigate('/explore');
         } catch (error) {
             alert('Incorrect username or password. Please try again.');
         }

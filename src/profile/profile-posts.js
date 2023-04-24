@@ -8,7 +8,7 @@ const MyReviews = ({user, myReviewsLink, likedReviewsLink, myProfile}) => {
         <div>
             <ul class="nav nav-tabs nav-fill mb-3">
                 <li class="nav-item accent-color rounded-top">
-                    <Link to={myReviewsLink} class="nav-link text-dark" href="#">My Reviews</Link>
+                    <Link to={myReviewsLink} class="nav-link text-dark" href="#">Reviews</Link>
                 </li>
                 <li class="nav-item">
                     <Link to={likedReviewsLink} class="nav-link text-light" href="#">Liked Reviews</Link>
@@ -25,14 +25,14 @@ const LikedReviews = ({user, myReviewsLink, likedReviewsLink}) => {
         <div>
             <ul class="nav nav-tabs nav-fill mb-3">
                 <li class="nav-item">
-                    <Link to={myReviewsLink} class="nav-link text-light" href="#">My Reviews</Link>
+                    <Link to={myReviewsLink} class="nav-link text-light" href="#">Reviews</Link>
                 </li>
                 <li class="nav-item accent-color rounded-top">
                     <Link to={likedReviewsLink} class="nav-link text-dark" href="#">Liked Reviews</Link>
                 </li>
             </ul>
 
-            <PostsList userPosts={user}/>
+            <PostsList userLikedPosts={user}/>
         </div>
     );
 }

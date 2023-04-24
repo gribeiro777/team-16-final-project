@@ -25,9 +25,6 @@ const NavigationBar = () => {
                 <div className='d-flex position-absolute end-50'>
                     <i class="bi bi-headphones fa-2x"></i>
                 </div>
-                {/* <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button> */}
                 <div className='d-flex align-items-center position-absolute end-0 me-3 h-100 '>
                     <Link to={"/search/"}><i class="bi bi-search fa-2x pe-4 text-off-black"></i></Link>
                     {!currentUser &&
@@ -47,17 +44,6 @@ const NavigationBar = () => {
                         </div>
                     }
                 </div>
-                {/* Make a dropdown menu on the right side */}
-                {/* <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" to="/">Home</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/explore">Explore</Link>
-                        </li>
-                    </ul>
-                </div> */}
             </div>
         </nav>
     );

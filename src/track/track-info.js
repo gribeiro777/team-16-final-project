@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {getTrackThunk} from "../thunks/spotify-thunks";
 import { ReviewForm } from "./review-form";
 import { getPostByTrackIDThunk } from "../thunks/post-thunks";

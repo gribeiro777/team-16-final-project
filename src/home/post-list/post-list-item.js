@@ -67,7 +67,7 @@ const PostItem = (
                     <Link className="text-decoration-none" to={`/tracks/${post.spotifyID}`}>
                         <div className="row">
                             <div className="col-auto d-flex flex-wrap align-items-center">
-                                    <img className="rounded-4 " height={64} src={post.albumArt}/>
+                                    <img alt='album' className="rounded-4 " height={64} src={post.albumArt}/>
                             </div>
                             <div className="col">
                                 <div className="row text-off-black">{post.songTitle}</div>

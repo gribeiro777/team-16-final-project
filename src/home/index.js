@@ -1,17 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import 'bootstrap/dist/css/bootstrap.css';
 import SearchBar from "./searchbar";
 import PostsList from "./post-list";
 import '../index.css'
 import './style/index.css'
-import {Provider} from "react-redux";
-import {configureStore} from "@reduxjs/toolkit";
-import spotifyReducer from "../reducers/spotify-reducer";
-import userReducer from '../reducers/user-reducer'
-import postReducer from "../reducers/post-reducer";
-import { getCurrentUserThunk } from "../thunks/auth-thunks";
-import authReducer from '../reducers/auth-reducer';
 import { Link } from "react-router-dom";
 
 function Home({explore}) {

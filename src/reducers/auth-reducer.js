@@ -40,13 +40,28 @@ const authSlice = createSlice({
                 state.loading = false
                 state.error = action.error
             },
+        [getCurrentUserThunk.pending]:
+            (state) => {
+                state.loading = true
+            },
         [getCurrentUserThunk.fulfilled]:
             (state, { payload }) => {
+                state.loading = false
                 state.currentUser = payload
+            },
+        [getCurrentUserThunk.rejected]:
+            (state, action) => {
+                state.loading = false
+                state.error = action.error
+            },
+        [logoutThunk.pending]:
+            (state) => {
+                state.loading = true
             },
         [logoutThunk.fulfilled]:
             (state, { payload }) => {
                 state.currentUser = null
+                state.loading = false
             },
         [updateUserThunk.pending]:
             (state) => {

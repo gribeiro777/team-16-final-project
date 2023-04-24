@@ -49,7 +49,7 @@ function Profile({likedReviews}) {
                 </div>
 
                 <div className='col-12 col-md-10 ps-4'>
-                    <ProfilePosts viewingUser={user} currentUser={currentUser} likedReviews={likedReviews}></ProfilePosts>
+                    {!loading && <ProfilePosts viewingUser={user} currentUser={currentUser} likedReviews={likedReviews}></ProfilePosts>}
                 </div>
             </div>
         </div>

@@ -21,7 +21,7 @@ const NavigationBar = () => {
     return (
         <nav className="nav navbar accent-color secondary-color-border">
             <div className="container-fluid">
-                <Link className="navbar-brand fw-bold" to="/">Tune Talk</Link>
+                <Link className="navbar-brand fw-bold" to="/explore">Tune Talk</Link>
                 <div className='d-flex position-absolute end-50'>
                     <i class="bi bi-headphones fa-2x"></i>
                 </div>
@@ -39,7 +39,7 @@ const NavigationBar = () => {
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
                                 <li><Link className='dropdown-item' to='/profile'>Profile</Link></li>
-                                <li><a class="dropdown-item" href="/" onClick={logout}>Logout</a></li>
+                                <li><a class="dropdown-item" href="/explore" onClick={logout}>Logout</a></li>
                             </ul>
                         </div>
                     }

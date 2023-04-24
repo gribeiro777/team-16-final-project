@@ -109,7 +109,7 @@ const SearchBar = ({noOptions}) => {
         })
     }) : []
 
-    return <div className='z-index-0'>
+    return <div>
         <div>
         <Select 
             styles={{

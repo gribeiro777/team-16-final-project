@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { registerThunk, loginThunk, getCurrentUserThunk, logoutThunk, updateUserThunk } from "../thunks/auth-thunks";
+import { likePostThunk, unlikePostThunk } from "../thunks/post-thunks";
 
 const authSlice = createSlice({
     name: 'auth',
@@ -70,7 +71,15 @@ const authSlice = createSlice({
         [updateUserThunk.fulfilled]:
             (state, { payload }) => {
                 state.currentUser = payload
-            }
+            },
+        [likePostThunk.fulfilled]:
+            (state, { payload }) => {
+                state.currentUser.likedPosts.push(payload._id)
+            },
+        [unlikePostThunk.fulfilled]:
+            (state, { payload }) => {
+                state.currentUser.likedPosts = state.currentUser.likedPosts.filter(post => post !== payload._id)
+            },
     },
     reducers: {}
 });

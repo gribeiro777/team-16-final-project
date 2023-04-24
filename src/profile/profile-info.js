@@ -74,7 +74,7 @@ const ProfileInfo = ({viewingUser, currentUser, smallView}) => {
         );
     } else {
         return (
-            <div className='row border rounded-4 mb-3 py-2 mx-0 bg-second'>
+            <div className='row border rounded-4 mb-3 py-2 mx-0 accent-color'>
                 <div className='col-4'>
                     <img alt='profile' src={`https://picsum.photos/seed/${username}/600`}
                             className='rounded-circle img-fluid'></img>

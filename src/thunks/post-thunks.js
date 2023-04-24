@@ -39,11 +39,11 @@ export const getUserLikedPostsThunk = createAsyncThunk(
 )
 
 export const likePostThunk = createAsyncThunk(
-    'posts/likePost', async (postID) =>
+    'auth/likePost', async (postID) =>
         await service.likePost(postID)
 )
 
 export const unlikePostThunk = createAsyncThunk(
-    'posts/unlikePost', async (postID) =>
+    'auth/unlikePost', async (postID) =>
         await service.unlikePost(postID)
 )

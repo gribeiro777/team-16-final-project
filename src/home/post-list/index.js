@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import PostItem
@@ -10,7 +9,6 @@ const PostsList = ({userPosts, userFollowingPosts, userLikedPosts, trackId, myPr
     const {currentUser} = useSelector(state => state.authData)
     const dispatch = useDispatch();
     useEffect(() => {
-        // dispatch(getCurrentUserThunk());
         if (trackId && userFollowingPosts) {
             dispatch(getPostsFromFollowingTrackIdThunk(trackId));
         } else if (trackId) {
@@ -22,7 +20,7 @@ const PostsList = ({userPosts, userFollowingPosts, userLikedPosts, trackId, myPr
         } else {
             dispatch(findPostsThunk(userFollowingPosts ? userFollowingPosts.username : null))
         }
-    }, [userFollowingPosts])
+    }, [dispatch, trackId, userFollowingPosts, userLikedPosts, userPosts])
 
     const newestFirst = posts.slice().reverse();
     return <div className="text-off-black">

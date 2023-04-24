@@ -11,7 +11,7 @@ const NavigationBar = () => {
 
     const logout = async () => {
         try {
-            await dispatch(logoutThunk()).unwrap();
+            dispatch(logoutThunk());
             navigate('/')
         } catch (err) {
             alert(`An error has occured: ${err}`);

@@ -1,18 +1,23 @@
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logoutThunk } from "../thunks/auth-thunks";
+import { getCurrentUserThunk, logoutThunk } from "../thunks/auth-thunks";
 
 const NavigationBar = () => {
     const { currentUser } = useSelector((state) => state.authData);
+
+    useEffect(() => {
+        dispatch(getCurrentUserThunk());
+    }, []);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const logout = async () => {
         try {
-            dispatch(logoutThunk());
-            navigate('/')
+            await dispatch(logoutThunk()).unwrap();
+            navigate('/explore')
         } catch (err) {
             alert(`An error has occured: ${err}`);
         }

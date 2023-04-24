@@ -16,6 +16,7 @@ const authSlice = createSlice({
             (state, { payload }) => {
                 state.registered = true
                 state.loading = false
+                state.currentUser = payload
             },
         [registerThunk.rejected]:
             (state, action) => {

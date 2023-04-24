@@ -44,7 +44,7 @@ function Home({explore}) {
     return(
         <Provider store={store}>
         <div className="secondary-color">
-            <div className="row" style={{"min-height": "90vh"}}>
+            <div className="row" style={{minHeight: "90vh"}}>
                 <div className="col-2 secondary-color ps-5">
                 </div>
                 <div className="col-8 card main-card main-color mt-5">

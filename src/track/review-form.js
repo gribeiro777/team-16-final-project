@@ -58,11 +58,11 @@ export const ReviewForm = ({currentTrack}) => {
                 <img src={`https://picsum.photos/seed/${currentUser?.username}/600`} width={60}
                     className='rounded-circle' alt='profile'/>
             </div>
-            <div className="col-10 bg-white rounded-4 pb-2">
+            <div className="col-10 accent-color rounded-4 pb-2 pt-2">
                 <textarea placeholder="Write a Review"
                         onChange={(e) => setReview(e.target.value)}
                         value={review}
-                        className="form-control border-0">
+                        className="form-control border-0 off-accent-color">
                 </textarea>
             <div>
                 <button className="rounded-pill btn btn-primary float-end mt-2 ps-3 pe-3 fw-bold" onClick={handleSubmit}>
@@ -76,4 +76,4 @@ export const ReviewForm = ({currentTrack}) => {
             <div className="col-12"><hr/></div>
         </div>
     );
-}
+}``~

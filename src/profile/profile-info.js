@@ -47,7 +47,7 @@ const ProfileInfo = ({viewingUser, currentUser, smallView}) => {
 
     if (!smallView) {
         return (
-            <div className='text-center px-2 pb-4 pt-1 bg-second rounded-4 shadow-sm'>
+            <div className='text-center px-2 pb-4 pt-1 accent-color rounded-4 shadow-sm'>
 
                 {!viewingUser && <Link to='/edit-profile' className='d-block mt-2' style={{ fontSize: '0.8vw' }}>Edit Profile</Link>}
                 

@@ -67,7 +67,7 @@ code {
 }
 
 .text-off-black {
-  color: #212427
+  color: #212427 !important
 }
 
 .secondary-color-border {

@@ -29,6 +29,7 @@ const NavigationBar = () => {
                     <span className="navbar-toggler-icon"></span>
                 </button> */}
                 <div className='d-flex align-items-center position-absolute end-0 me-3 h-100 '>
+                    <Link to={"/search/"}><i class="bi bi-search fa-2x pe-4 text-off-black"></i></Link>
                     {!currentUser &&
                     <button class="btn btn-outline-dark" type="button">
                         <Link className='text-decoration-none text-black' to='/login'>Login</Link>

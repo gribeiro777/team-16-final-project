@@ -30,10 +30,12 @@ const SearchBar = ({noOptions}) => {
 
     useEffect(() => {
         dispatch(findUsersThunk())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     useEffect(() => {
         dispatch(searchSpotifyThunk({query: searchInput, count: 10}))
         setSearchedUsers(userSearch())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchInput, users])
 
     const handleChange = (e) => {
@@ -87,7 +89,10 @@ const SearchBar = ({noOptions}) => {
         searchedUsers.slice(0,3).map(user => {
         return ({
             label: <Link to={`/profile/${user.username}`} style={{ color: 'black', textDecoration: 'none'}}>
-                <div><img className="rounded-4" src={`https://picsum.photos/seed/${user.username}/600`} height="36px" width="36px"/> {user.username} (user)</div>
+                <div>
+                    <img alt="User profile" className="rounded-4" src={`https://picsum.photos/seed/${user.username}/600`} height="36px" width="36px"/> 
+                    {user.username} (user)
+                </div>
             </Link>,
             value: JSON.stringify({type: 'user', value: user})
         })

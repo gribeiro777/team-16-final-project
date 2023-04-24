@@ -60,7 +60,9 @@ function App() {
             <Route path='profile/:username/liked-reviews'
                    element={<Profile likedReviews={true}/>}/>'
             <Route path='search/:query'
-                     element={<Search/>}/>       
+                     element={<Search/>}/>
+            <Route path='search'
+                     element={<Search/>}/>              
             <Route path='profile/:username/following'
                    element={<FollowsPage followers={false}/>}/>
             <Route path='profile/:username/followers'

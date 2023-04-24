@@ -43,7 +43,7 @@ code {
 }
 
 .accent-color {
-  background: #dfcdc3;
+  background: #dfcdc3 !important;
 }
 
 .accent-border {

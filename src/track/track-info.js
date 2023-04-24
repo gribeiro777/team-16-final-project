@@ -25,9 +25,14 @@ const PostNav = ({exploreActive, tid}) => {
 const TrackInfo = ({tid, explore}) => {
     const { currentUser } = useSelector((state) => state.authData);
     const {currentTrack} = useSelector(state => state.spotifyData)
+    const {posts} = useSelector(state => state.postData)
+
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getTrackThunk(tid))
+    }, [])
+    useEffect(() => {
+        dispatch(getPostByTrackIDThunk(tid))
     }, [])
 
     return (
@@ -52,22 +57,25 @@ const TrackInfo = ({tid, explore}) => {
             
             <hr className='color-first'></hr>
 
-            {currentUser && 
             <div className='row'>  
-                <div>
-                    <ReviewForm currentTrack={currentTrack}/>
-                    <PostNav exploreActive={explore} tid={tid}/>
-                    {!explore && <PostsList userFollowingPosts={currentUser} trackId={tid}/>}
-                    {explore && <PostsList trackId={tid} myProfile={true}/>}
+                {currentUser && <ReviewForm currentTrack={currentTrack}/>}
+                <div className="card accent-color p-5 mb-4">
+                    {!posts.length ? 
+                    <h2 className="text-off-black">{currentUser ? 'Be the first to review this song' : 'Log in and be the first to review this song!'}</h2> :
+                    currentUser ? <div> 
+                        <PostNav exploreActive={explore} tid={tid}/>
+                        <div className='row pt-3'>
+                            <h2 className="pb-2 pt-5">Latest reviews</h2>
+                            {!explore && <PostsList userFollowingPosts={currentUser} trackId={tid}/>}
+                            {explore && <PostsList trackId={tid} myProfile={true}/>}
+                        </div>
+                    </div> : 
+                    <div>   
+                        <PostsList trackId={tid}/>
+                    </div>
+                    }
                 </div>
-            </div>}
-
-            {!currentUser && 
-                <div>   
-                    <h2>Latest Reviews</h2>
-                    <PostsList trackId={tid}/>
-                </div>
-            }
+            </div>
         </div>
         : 'invalid song id'}
     </div>

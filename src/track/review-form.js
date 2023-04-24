@@ -45,6 +45,8 @@ export const ReviewForm = ({currentTrack}) => {
         };
         try {
             await dispatch(createPostThunk(post)).unwrap();
+            setReview('');
+            setRating(0);
         } catch (err) {
             alert(err);
         }

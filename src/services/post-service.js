@@ -38,3 +38,18 @@ export const getPostsFromFollowingTrackId = async (trackId) => {
     const response = await api.get(`${DB_URL}/get-posts-from-following-trackID/${trackId}`)
     return response.data
 }
+
+export const getUserLikedPosts = async (username) => {
+    const response = await api.get(`${DB_URL}/get-user-liked/${username}`)
+    return response.data
+}
+
+export const likePost = async (postID) => {
+    const response = await api.put(`${DB_URL}/like-post/${postID}`)
+    return response.data
+}
+
+export const unlikePost = async (postID) => {
+    const response = await api.put(`${DB_URL}/unlike-post/${postID}`)
+    return response.data
+}

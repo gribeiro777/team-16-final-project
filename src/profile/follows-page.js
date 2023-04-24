@@ -35,7 +35,7 @@ const FollowsPage = ({followers}) => {
 
     return (
         <div className='p-2 position-relative'>
-            <Link to={profileLink}><i class="bi bi-arrow-left fa-2x ms-3 position-absolute text-dark" role='button'></i></Link>
+            <Link to={profileLink}><i class="bi bi-arrow-left fa-2x ms-3 position-absolute text-accent" role='button'></i></Link>
             <div className='d-flex justify-content-center mt-4'>
                 {followers && <h1 className='color-first'>{currentUsername}'s Followers</h1>}
                 {!followers && <h1 className='color-first'>{currentUsername}'s Following</h1>}

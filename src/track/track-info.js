@@ -67,7 +67,7 @@ const TrackInfo = ({tid, explore}) => {
                         <div className='row pt-3'>
                             <h2 className="pb-2 pt-5">Latest reviews</h2>
                             {!explore && <PostsList userFollowingPosts={currentUser} trackId={tid}/>}
-                            {explore && <PostsList trackId={tid} myProfile={true}/>}
+                            {explore && <PostsList trackId={tid}/>}
                         </div>
                     </div> : 
                     <div>   

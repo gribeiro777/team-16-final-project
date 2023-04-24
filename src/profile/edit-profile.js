@@ -60,8 +60,8 @@ const EditProfile = () => {
     };
 
   return (
-    <div className="registers-page d-flex justify-content-center align-items-center vh-100 bg-light">
-      <div className="card p-3 shadow-sm w-40" style={{ width: '30rem' }}>
+    <div className="registers-page d-flex justify-content-center align-items-center vh-100">
+      <div className="card accent-color p-3 shadow-sm w-40" style={{ width: '30rem' }}>
         <h2 className="text-center mb-4">Edit Profile</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group mb-4">

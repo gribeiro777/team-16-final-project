@@ -18,16 +18,8 @@ const store = configureStore({reducer: {spotifyData: spotifyReducer,
         userData: userReducer, postData: postReducer, authData: authReducer}})
 
 function Home({explore}) {
-    const dispatch = useDispatch();
     const { currentUser } = useSelector((state) => state.authData);
     const [postListUser, setPostListUser] = useState(null)
-
-    useEffect(() => {
-        const getCurrentUser = async () => {
-            const { payload } = await dispatch(getCurrentUserThunk()).unwrap();
-        }
-        getCurrentUser();
-    }, []);
 
     useEffect(() => {
         setPostListUser(currentUser)

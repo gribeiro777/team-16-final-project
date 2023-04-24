@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
-import { registerThunk } from "../thunks/auth-thunks";
+import { loginThunk, registerThunk } from "../thunks/auth-thunks";
 
 const RegisterForm = () => {
     const { currentUser } = useSelector(state => state.authData);
@@ -61,6 +61,8 @@ const RegisterForm = () => {
             }
             try {
                 await dispatch(registerThunk(newUser)).unwrap()
+                const credentials = {username: username, password: password}
+                await dispatch(loginThunk(credentials)).unwrap();
                 navigate('/profile');
             } catch (error) {
                 alert('Username or email already exists. Please try again.');

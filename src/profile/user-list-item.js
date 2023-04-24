@@ -5,7 +5,7 @@ import './style/user-list-item.css';
 export const UserListItem = ({user}) => {
     const profileLink = `/profile/${user?.username}`;
     return (
-        <div className='col-xxl-2 col-md-3 col-sm-5 col-10 d-flex align-items-center px-3 py-2 m-3 rounded-4 bg-second shadow-hover' role='button'>
+        <div className='col-xxl-2 col-md-3 col-sm-5 col-10 d-flex align-items-center px-3 py-2 m-3 rounded-4 accent-color shadow-hover' role='button'>
             <Link to={profileLink} className='text-decoration-none color-fourth'>
                 <div className='row'>
                     <div className='col-3'>

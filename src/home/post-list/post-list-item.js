@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import {Link} from "react-router-dom";
 import '../style/index.css'
 import { useDispatch } from "react-redux";
-import { deletePostThunk } from "../../thunks/post-thunks";
+import { deletePostThunk, likePostThunk, unlikePostThunk } from "../../thunks/post-thunks";
 
 const PostItem = (
     {
@@ -20,9 +20,12 @@ const PostItem = (
             likes: 10,
         },
         myProfile = false,
-        isAdmin = false,
+        currentUser,
     }
 ) => {
+    const [isLiked, setIsLiked] = useState(currentUser?.likedPosts?.includes(post._id));
+    const [numLikes, setNumLikes] = useState(post.likes);
+
     const starIcons = []
     for (let i = 0; i < post.rating; i++) {
         starIcons.push(<bi className="bi bi-star-fill"></bi>)
@@ -37,8 +40,20 @@ const PostItem = (
         dispatch(deletePostThunk(post._id))
     }
 
+    const likePost = () => {
+        dispatch(likePostThunk(post._id))
+        setIsLiked(true);
+        setNumLikes(numLikes + 1);
+    }
+
+    const unlikePost = () => {
+        dispatch(unlikePostThunk(post._id))
+        setIsLiked(false)
+        setNumLikes(numLikes - 1);
+    }
+
     return(
-        <li className="list-group-item main-color text-off-black border-start-0 border-end-0 accent-border border-3 pt-3 pb-3 position-relative">
+        <li className="list-group-item main-color text-off-black border-start-0 border-end-0 accent-border border-3 pt-3 pb-2 position-relative">
             <div className="row">
                 <div className="col-3">
                     <Link className="text-decoration-none" to={`/tracks/${post.spotifyID}`}>
@@ -65,14 +80,16 @@ const PostItem = (
                     <div className='text-break'>{post.review}</div>
                 </div>
             </div>
-            <div className='row'>
+            <div className='row mt-1 position-relative'>
                 <div className='col-3'></div>
                 <div className='col-9'>
-                    <i className="bi bi-heart me-1"></i>
-                    <span className="text-muted">{post.likes}</span>
+                    {!isLiked && <i className="bi bi-heart me-1" role='button' onClick={likePost}></i>}
+                    {isLiked && <i className="bi bi-heart-fill me-1" role='button' onClick={unlikePost}></i>}
+                    <span className='time'>{` ${numLikes}`}</span>
+
+                    {(myProfile || currentUser?.isAdmin) && <u className='position-absolute end-0 bottom-0 me-2 p-1 text-danger' role='button' onClick={deletePost}>Delete</u>}
                 </div>
             </div>
-            {(myProfile || isAdmin) && <u className='position-absolute end-0 bottom-0 me-3 p-1 text-danger' role='button' onClick={deletePost}>Delete</u>}
             <div className="row"></div>
         </li>
     );

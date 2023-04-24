@@ -106,7 +106,7 @@ const SearchBar = ({noOptions}) => {
 
     return <div className='z-index-0'>
         <div>
-        <Select className='z-index-2'
+        <Select 
             styles={{
                 control: (baseStyles, state) => ({
                     ...baseStyles,

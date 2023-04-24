@@ -2,10 +2,10 @@ import React, {useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import PostItem
     from "./post-list-item";
-import {findPostsThunk, findUserPostsThunk, getPostByTrackIDThunk, getPostsFromFollowingTrackIdThunk} from "../../thunks/post-thunks";
+import {findPostsThunk, findUserPostsThunk, getPostByTrackIDThunk, getPostsFromFollowingTrackIdThunk, getUserLikedPostsThunk} from "../../thunks/post-thunks";
 import { getCurrentUserThunk } from "../../thunks/auth-thunks";
 
-const PostsList = ({userPosts, userFollowingPosts, trackId, myProfile = false}) => {
+const PostsList = ({userPosts, userFollowingPosts, userLikedPosts, trackId, myProfile = false}) => {
     const {posts} = useSelector(state => state.postData)
     const {currentUser} = useSelector(state => state.authData)
     const dispatch = useDispatch();
@@ -15,6 +15,8 @@ const PostsList = ({userPosts, userFollowingPosts, trackId, myProfile = false}) 
             dispatch(getPostsFromFollowingTrackIdThunk(trackId));
         } else if (trackId) {
             dispatch(getPostByTrackIDThunk(trackId))
+        } else if (userLikedPosts) {
+            dispatch(getUserLikedPostsThunk(userLikedPosts.username));
         } else if (userPosts) {
             dispatch(findUserPostsThunk(userPosts.username))
         } else {
@@ -26,7 +28,7 @@ const PostsList = ({userPosts, userFollowingPosts, trackId, myProfile = false}) 
         <ul className="list-group rounded-0">
             {
                 posts.map(post => 
-                    <PostItem key={post._id} post={post} myProfile={myProfile} isAdmin={currentUser?.isAdmin}/>)
+                    <PostItem key={post._id} post={post} myProfile={myProfile} currentUser={currentUser}/>)
             }
         </ul>
     </div>

@@ -32,3 +32,18 @@ export const getPostsFromFollowingTrackIdThunk = createAsyncThunk(
     'posts/getPostsFromFollowingTrackId', async (trackId) =>
         await service.getPostsFromFollowingTrackId(trackId)
 )
+
+export const getUserLikedPostsThunk = createAsyncThunk(
+    'posts/getUserLikedPosts', async (username) =>
+        await service.getUserLikedPosts(username)
+)
+
+export const likePostThunk = createAsyncThunk(
+    'posts/likePost', async (postID) =>
+        await service.likePost(postID)
+)
+
+export const unlikePostThunk = createAsyncThunk(
+    'posts/unlikePost', async (postID) =>
+        await service.unlikePost(postID)
+)

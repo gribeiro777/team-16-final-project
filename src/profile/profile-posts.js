@@ -32,7 +32,7 @@ const LikedReviews = ({user, myReviewsLink, likedReviewsLink}) => {
                 </li>
             </ul>
 
-            <PostsList userPosts={user}/>
+            <PostsList userLikedPosts={user}/>
         </div>
     );
 }

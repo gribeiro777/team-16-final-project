@@ -1,7 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import { getCurrentUserThunk, updateUserThunk } from "../thunks/auth-thunks";
 

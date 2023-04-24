@@ -24,7 +24,7 @@ const PostsList = ({userPosts, userFollowingPosts, userLikedPosts, trackId, myPr
         }
     }, [userFollowingPosts])
 
-    const newestFirst = posts.slice().reverse()
+    const newestFirst = posts.slice().reverse();
     return <div className="text-off-black">
         <ul className="list-group rounded-0">
             {

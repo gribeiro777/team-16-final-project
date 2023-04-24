@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { findUsersThunk, getUserByUsernameThunk, getUserFollowersThunk, getUserFollowingThunk } from "../thunks/user-thunks";
+import { getUserFollowersThunk, getUserFollowingThunk } from "../thunks/user-thunks";
 import { getCurrentUserThunk } from "../thunks/auth-thunks";
 import { UserListItem } from "./user-list-item";
 import { Link } from "react-router-dom";
@@ -24,6 +25,7 @@ const FollowsPage = ({followers}) => {
         } else {
             dispatch(getUserFollowingThunk(currentUsername))
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentUser?.username, dispatch, username])
 
     let profileLink = '/profile'

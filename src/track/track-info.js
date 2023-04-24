@@ -50,7 +50,7 @@ const TrackInfo = ({tid, explore}) => {
                     <span>
                     {currentTrack.artists.map(artist => `${artist.name} ● `)}
                     {currentTrack.album.release_date.slice(0, 4)} ● { }
-                    {`${Math.floor(currentTrack.duration_ms / 60000)}:${Math.trunc(currentTrack.duration_ms / 1000 % 60)}`}
+                    {`${Math.floor(currentTrack.duration_ms / 60000)}:${Math.trunc(currentTrack.duration_ms / 1000 % 60).toString().padStart(2, '0')}`}
                     </span>
                 </div>
             </div>

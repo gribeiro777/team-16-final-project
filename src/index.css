@@ -81,3 +81,7 @@ code {
 .text-accent {
   color: #dfcdc3;
 }
+
+.off-accent-color {
+  background: #f5ebeb !important;
+}

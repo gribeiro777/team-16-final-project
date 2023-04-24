@@ -111,7 +111,8 @@ const SearchComponent = ({query}) => {
                                             </div>
                                             <div className='col-10'>
                                                 <div className='row'>{song_label}</div>
-                                                <div className='row'>{`${Math.floor(track.duration_ms / 60000)}:${Math.trunc(track.duration_ms / 1000 % 60)}`}</div>
+                                                <div className='row'>{`${Math.floor(track.duration_ms / 60000)}:${Math.trunc(track.duration_ms / 1000 % 60).toString().padStart(2, '0')}`}
+                                                </div>
                                             </div>
                                         </div>
                                     </Link>

@@ -44,7 +44,7 @@ function Home({explore}) {
                     {currentUser ? <PostNav exploreActive={explore}/> : ''}
                     <div className='row pt-3'>
                         <h2 className="pb-2 pt-5">Latest reviews</h2>
-                        {!loading && <PostsList userFollowingPosts={explore || !currentUser ? null : postListUser}></PostsList>}
+                        {<PostsList userFollowingPosts={explore || !currentUser ? null : postListUser}></PostsList>}
                     </div>
                 </div>
                 <div className="col-2 secondary-color">

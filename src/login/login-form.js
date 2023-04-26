@@ -68,8 +68,8 @@ const LoginForm = () => {
             {!loading && <button type="submit" className="btn btn-primary w-20">
                 Login
             </button>}
-            {loading && <button type="submit" className="btn btn-primary w-20">
-                Login
+            {loading && <button type="submit" className="btn btn-primary w-20" disabled>
+                Logging in...
             </button>}
           </div>
         </form>
